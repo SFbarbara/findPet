@@ -37,6 +37,49 @@
             {
               "client_id": "1044233619556-u4kv13od8gl9hu1e9ba82inbmsn7tmtu.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1044233619556-0uevqdasabsqjl0srr0hu0vcuvuiftnn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "y"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1044233619556:android:2bad2b51b69cdb353ef771",
+        "android_client_info": {
+          "package_name": "com.example.findpet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1044233619556-u4kv13od8gl9hu1e9ba82inbmsn7tmtu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyCg7TO04r6buj-WgpGe36YYn2H2whseY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1044233619556-u4kv13od8gl9hu1e9ba82inbmsn7tmtu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1044233619556-0uevqdasabsqjl0srr0hu0vcuvuiftnn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "y"
+              }
             }
           ]
         }
