@@ -50,7 +50,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   "Faça login",
                   style: GoogleFonts.nanumGothic(
                     fontSize: 25,
-                    fontWeight: FontWeight.w600,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
                 SizedBox(
@@ -82,10 +82,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                         ),
                         _botaoEntrar(),
                         SizedBox(
-                          height: 15,
+                          height: 10,
                         ),
                         _botaoEsqueceu(),
-                        _botaoCadastar(),
+                        _botaoCadastrar(),
                      ],
                     ),
                   ),
@@ -101,34 +101,75 @@ class _LoginWidgetState extends State<LoginWidget> {
     return Row(
       children: [
         Expanded(
-            child: ElevatedButton(
-                onPressed: () {
-                  _login();
-                },
-                child: Text("Entrar"))),
+          child: ElevatedButton(
+            onPressed: () {
+              _login();
+            },
+            child: Text("Entrar")
+          ),
+        ),
       ],
     );
   }
 
   _botaoEsqueceu() {
-    return TextButton(
-      onPressed: (){}, 
-      child: Text("Esqueceu sua senha?"),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children:[
+          Text(
+            "Esqueceu sua senha? ",
+            style: GoogleFonts.dekko(
+              fontWeight: FontWeight.w900,
+              fontSize: 15,
+            ),
+          ),
+          TextButton(
+            onPressed: (){
+        
+            }, 
+            child: Text(
+              "Clique aqui",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 13,
+              ),
+            ),
+          ),
+        ]
+      ),
     );
   }
 
-  _botaoCadastar() {
+  _botaoCadastrar() {
     return Padding(
       padding: const EdgeInsets.only(top: 12.0),
-      child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Text("Não tem uma conta.  ", style: GoogleFonts.dekko()),
-        TextButton(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center, 
+        children: [
+          Text(
+            "Não tem uma conta. ", 
+            style: GoogleFonts.dekko(
+              fontSize: 15,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          TextButton(
             onPressed: () {
               Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => UsuarioPage()));
+                .push(MaterialPageRoute(builder: (context) => UsuarioPage()));
             },
-            child: Text("Cadastre-se"))
-      ]),
+            child: Text(
+              "Cadastre-se",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 13,
+              ),
+            ),
+          )
+        ]
+      ),
     );
   }
 

@@ -59,20 +59,54 @@ class MainPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                child: TextButton(
-                  onPressed: (){}, 
-                  child: Text(
-                    "Chat", 
-                    style: TextStyle(
-                      color:Colors.white, 
-                      fontSize: 20,
+              Column(
+                children:[ 
+                  TextButton(
+                    onPressed: (){
+
+                    }, 
+                    child: Text(
+                      "Perfil", 
+                      style: TextStyle(
+                        color:Colors.white, 
+                        fontSize: 20,
+                      ),
                     ),
                   ),
-                ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  TextButton(
+                    onPressed: (){
+                      
+                    }, 
+                    child: Text(
+                      "Chat", 
+                      style: TextStyle(
+                        color:Colors.white, 
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  TextButton(
+                    onPressed: (){
+                      
+                    }, 
+                    child: Text(
+                      "Configurações", 
+                      style: TextStyle(
+                        color:Colors.white, 
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                ],
               ),
               SizedBox(
-                height: 700,
+                height: 650,
               ),
               Container(
                 alignment: Alignment.bottomRight,
