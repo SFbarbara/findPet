@@ -81,9 +81,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                           height: 20,
                         ),
                         _botaoEntrar(),
-                        SizedBox(
+                        /*SizedBox(
                           height: 10,
-                        ),
+                        ),*/
                         _botaoEsqueceu(),
                         _botaoCadastrar(),
                      ],
@@ -119,10 +119,10 @@ class _LoginWidgetState extends State<LoginWidget> {
         mainAxisAlignment: MainAxisAlignment.center,
         children:[
           Text(
-            "Esqueceu sua senha? ",
+            "Esqueceu sua senha?",
             style: GoogleFonts.dekko(
               fontWeight: FontWeight.w900,
-              fontSize: 15,
+              //fontSize: 15,
             ),
           ),
           TextButton(
