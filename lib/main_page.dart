@@ -14,7 +14,7 @@ class MainPage extends StatelessWidget {
       ),
       body: Container(),
       drawer: Drawer(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.cyan[800],
         elevation: 5,
         child: Container(
           child: Column(
@@ -23,6 +23,7 @@ class MainPage extends StatelessWidget {
                 width:double.infinity,
                 height: 140,
                 child: Card(
+                  color: Colors.black54,
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
@@ -32,7 +33,16 @@ class MainPage extends StatelessWidget {
                             radius: 55.0,
                             backgroundImage: NetworkImage("https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80")
                           ),
-                          Text("Seu Nome"),
+                          /*SizedBox(
+                            height: 5,
+                          ),*/
+                          Text(
+                            "Seu Nome", 
+                            style: TextStyle(
+                              color:Colors.white,
+                              fontSize: 13,
+                            ),
+                          ),
                         ],
                       ),
                       Positioned(
@@ -42,13 +52,35 @@ class MainPage extends StatelessWidget {
                           onPressed: (){
                           Navigator.of(context).push( MaterialPageRoute(builder: (context)=>UsuarioPage(usuario:usuario)) );
                           }, 
-                          icon: Icon(Icons.edit),
+                          icon: Icon(Icons.edit, color: Colors.white),
                         ),
                       ),
                     ],
                   ),
                 ),
-              )
+              ),
+              Container(
+                child: TextButton(
+                  onPressed: (){}, 
+                  child: Text(
+                    "Chat", 
+                    style: TextStyle(
+                      color:Colors.white, 
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 700,
+              ),
+              Container(
+                alignment: Alignment.bottomRight,
+                  child: IconButton(
+                    onPressed: (){}, 
+                    icon: Icon(Icons.logout_outlined, color: Colors.white),
+                  )
+              ),
             ],
           ),
         ),

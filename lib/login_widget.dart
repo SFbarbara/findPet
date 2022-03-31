@@ -81,6 +81,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                           height: 20,
                         ),
                         _botaoEntrar(),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        _botaoEsqueceu(),
                         _botaoCadastar(),
                      ],
                     ),
@@ -103,6 +107,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                 },
                 child: Text("Entrar"))),
       ],
+    );
+  }
+
+  _botaoEsqueceu() {
+    return TextButton(
+      onPressed: (){}, 
+      child: Text("Esqueceu sua senha?"),
     );
   }
 
@@ -139,3 +150,5 @@ class _LoginWidgetState extends State<LoginWidget> {
     }
   }
 }
+
+
