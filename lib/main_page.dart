@@ -13,7 +13,7 @@ class MainPage extends StatelessWidget {
         title: Text("Página inicial"),
       ),
       body: Container(
-        /*child: Row(
+        child: Row(
           children: [
             IconButton(
               alignment: Alignment.topRight,
@@ -25,7 +25,7 @@ class MainPage extends StatelessWidget {
               ),
             ),
           ],
-        ),*/
+        ),
       ),
       drawer: Drawer(
         backgroundColor: Colors.cyan[800],
