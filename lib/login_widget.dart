@@ -81,9 +81,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                           height: 20,
                         ),
                         _botaoEntrar(),
-                        /*SizedBox(
+                        SizedBox(
                           height: 10,
-                        ),*/
+                        ),
                         _botaoEsqueceu(),
                         _botaoCadastrar(),
                      ],

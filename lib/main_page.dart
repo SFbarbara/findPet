@@ -12,7 +12,21 @@ class MainPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Página inicial"),
       ),
-      body: Container(),
+      body: Container(
+        /*child: Row(
+          children: [
+            IconButton(
+              alignment: Alignment.topRight,
+              onPressed: (){}, 
+              icon: const Icon(
+                Icons.add_circle_outline, 
+                color: Colors.white, 
+                size: 45,
+              ),
+            ),
+          ],
+        ),*/
+      ),
       drawer: Drawer(
         backgroundColor: Colors.cyan[800],
         elevation: 5,
@@ -21,7 +35,7 @@ class MainPage extends StatelessWidget {
             children: [
               Container(
                 width:double.infinity,
-                height: 140,
+                height: 150,
                 child: Card(
                   color: Colors.black54,
                   child: Stack(
@@ -33,14 +47,14 @@ class MainPage extends StatelessWidget {
                             radius: 55.0,
                             backgroundImage: NetworkImage("https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80")
                           ),
-                          /*SizedBox(
+                          SizedBox(
                             height: 5,
-                          ),*/
+                          ),
                           Text(
-                            "Seu Nome", 
+                            "Seu nome", 
                             style: TextStyle(
                               color:Colors.white,
-                              fontSize: 13,
+                              fontSize: 15,
                             ),
                           ),
                         ],
@@ -59,66 +73,127 @@ class MainPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Column(
-                children:[ 
-                  TextButton(
-                    onPressed: (){
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children:[ 
+                      Row(
+                        children: [
+                          TextButton.icon(
+                            icon: Icon(Icons.notifications, color: Colors.white),
+                            label: const Text(
+                              "Notificações", 
+                              style: TextStyle(
+                                color:Colors.white, 
+                                fontSize: 18,
+                              ),
+                            ),
+                            onPressed: (){
+                              
+                            }, 
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Row(
+                        children: [
+                          TextButton.icon(
+	                          icon: Icon(Icons.chat, color: Colors.white),
+                            label: Text(
+                              "Chat", 
+                              style: TextStyle(
+            	                  color:Colors.white, 
+                                fontSize: 18,
+            	                ),
+                            ),
+                            onPressed: (){
 
-                    }, 
-                    child: Text(
-                      "Perfil", 
-                      style: TextStyle(
-                        color:Colors.white, 
-                        fontSize: 20,
+                            }, 
+                          ),
+                        ],
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  TextButton(
-                    onPressed: (){
-                      
-                    }, 
-                    child: Text(
-                      "Chat", 
-                      style: TextStyle(
-                        color:Colors.white, 
-                        fontSize: 20,
+                      SizedBox(
+                        height: 5,
                       ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 5,
-                  ),
-                  TextButton(
-                    onPressed: (){
-                      
-                    }, 
-                    child: Text(
-                      "Configurações", 
-                      style: TextStyle(
-                        color:Colors.white, 
-                        fontSize: 20,
+                      Row(
+                        children: [
+                          TextButton.icon(
+	                          icon: Icon(Icons.explore_outlined, color: Colors.white),
+                            label: Text(
+                              "Explorar", 
+                              style: TextStyle(
+            	                  color:Colors.white, 
+                                fontSize: 18,
+            	                ),
+                            ),
+                            onPressed: (){
+                              
+                            }, 
+                          ),
+                        ],
                       ),
-                    ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Row(
+                        children: [
+                          TextButton.icon(
+	                          icon: Icon(Icons.account_circle_rounded, color: Colors.white),
+                            label: Text(
+                              "Perfil", 
+                              style: TextStyle(
+            	                  color:Colors.white, 
+                                fontSize: 18,
+            	                ),
+                            ),
+                            onPressed: (){
+                              
+                            }, 
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),
               SizedBox(
-                height: 650,
+                height: 600,
               ),
-              Container(
-                alignment: Alignment.bottomRight,
-                  child: IconButton(
-                    onPressed: (){}, 
-                    icon: Icon(Icons.logout_outlined, color: Colors.white),
-                  )
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    alignment: Alignment.bottomRight,
+                      child: IconButton(
+                        onPressed: (){}, 
+                        icon: Icon(Icons.settings, color: Colors.white),
+                      )
+                  ),
+                  Container(
+                    alignment: Alignment.bottomRight,
+                      child: IconButton(
+                        onPressed: (){
+                          _logout();
+                        }, 
+                        icon: Icon(Icons.logout, color: Colors.white),
+                      )
+                  ),
+                ],
               ),
             ],
           ),
         ),
       ),
     );
+  }
+
+  Future<void> _logout() async {
+    
   }
 }
