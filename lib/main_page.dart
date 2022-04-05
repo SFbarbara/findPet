@@ -1,3 +1,4 @@
+import 'package:findPet/usuario.repository.dart';
 import 'package:findPet/usuario_model.dart';
 import 'package:flutter/material.dart';
 import 'usuario_page.dart';
@@ -12,19 +13,15 @@ class MainPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Página inicial"),
       ),
-      body: Container(
-        child: Row(
-          children: [
-            IconButton(
-              alignment: Alignment.topRight,
-              onPressed: (){}, 
-              icon: const Icon(
-                Icons.add_circle_outline, 
-                color: Colors.white, 
-                size: 45,
-              ),
-            ),
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(750.0),
+        child: IconButton(
+          onPressed: (){}, 
+          icon: const Icon(
+            Icons.add_a_photo_outlined, 
+            color: Colors.white, 
+            size: 40,
+          ),
         ),
       ),
       drawer: Drawer(
@@ -194,6 +191,6 @@ class MainPage extends StatelessWidget {
   }
 
   Future<void> _logout() async {
-    
+    await UsuarioRepository().logout();
   }
 }

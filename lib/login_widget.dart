@@ -1,3 +1,4 @@
+import 'package:findPet/usuario_recuperar_senha.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -20,7 +21,6 @@ class _LoginWidgetState extends State<LoginWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
         appBar: AppBar(
           title: Row(
             children: [
@@ -127,7 +127,8 @@ class _LoginWidgetState extends State<LoginWidget> {
           ),
           TextButton(
             onPressed: (){
-        
+              Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) => UsuarioRecuperar()));
             }, 
             child: Text(
               "Clique aqui",
