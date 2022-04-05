@@ -1,3 +1,4 @@
+import 'package:findPet/pages/inferir/inferir_page.dart';
 import 'package:findPet/usuario.repository.dart';
 import 'package:findPet/usuario_model.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,9 @@ class MainPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(750.0),
         child: IconButton(
-          onPressed: (){}, 
+          onPressed: (){
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => InferirPage(),));
+          }, 
           icon: const Icon(
             Icons.add_a_photo_outlined, 
             color: Colors.white, 
