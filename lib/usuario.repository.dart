@@ -30,4 +30,8 @@ class UsuarioRepository {
   logout() async {
     await FirebaseAuth.instance.signOut();
   }
+
+  recuperar(String email) async {
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  }
 }

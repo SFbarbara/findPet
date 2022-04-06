@@ -1,4 +1,4 @@
-import 'package:findPet/usuario_recuperar_senha.dart';
+import 'package:findPet/usuario.repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -122,13 +122,18 @@ class _LoginWidgetState extends State<LoginWidget> {
             "Esqueceu sua senha?",
             style: GoogleFonts.dekko(
               fontWeight: FontWeight.w900,
-              //fontSize: 15,
             ),
           ),
           TextButton(
-            onPressed: (){
-              Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => UsuarioRecuperar()));
+            onPressed: () async {
+              _key.currentState?.save();
+              try {
+                await UsuarioRepository().recuperar(usuario.email!);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Código de recuperação enviado no email")));
+              } catch (e) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Erro $e")));
+              }
+              
             }, 
             child: Text(
               "Clique aqui",

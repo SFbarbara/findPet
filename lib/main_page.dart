@@ -14,18 +14,11 @@ class MainPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Página inicial"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(750.0),
-        child: IconButton(
-          onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) => InferirPage(),));
-          }, 
-          icon: const Icon(
-            Icons.add_a_photo_outlined, 
-            color: Colors.white, 
-            size: 40,
-          ),
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed:(){
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => InferirPage()));
+        },
+        child: Icon(Icons.add_a_photo_outlined, color: Colors.white),
       ),
       drawer: Drawer(
         backgroundColor: Colors.cyan[800],
