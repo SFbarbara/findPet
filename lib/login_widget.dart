@@ -132,6 +132,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Código de recuperação enviado no email")));
               } catch (e) {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Erro $e")));
+                //erro - o endereço de e-mail está mal formatado
               }
               
             }, 
