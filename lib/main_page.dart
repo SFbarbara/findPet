@@ -1,4 +1,7 @@
+import 'package:findPet/chat_page.dart';
+import 'package:findPet/notificacao_page.dart';
 import 'package:findPet/pages/inferir/inferir_page.dart';
+import 'package:findPet/settings_page.dart';
 import 'package:findPet/usuario.repository.dart';
 import 'package:findPet/usuario_model.dart';
 import 'package:flutter/material.dart';
@@ -86,7 +89,7 @@ class MainPage extends StatelessWidget {
                               ),
                             ),
                             onPressed: (){
-                              
+                              Navigator.of(context).push( MaterialPageRoute(builder: (context)=>NotificacaoPage()));
                             }, 
                           ),
                         ],
@@ -106,7 +109,7 @@ class MainPage extends StatelessWidget {
             	                ),
                             ),
                             onPressed: (){
-
+                              Navigator.of(context).push( MaterialPageRoute(builder: (context)=>ChatPage()) );
                             }, 
                           ),
                         ],
@@ -164,7 +167,9 @@ class MainPage extends StatelessWidget {
                   Container(
                     alignment: Alignment.bottomRight,
                       child: IconButton(
-                        onPressed: (){}, 
+                        onPressed: (){
+                          Navigator.of(context).push( MaterialPageRoute(builder: (context)=>SettingsPage()) );
+                        }, 
                         icon: Icon(Icons.settings, color: Colors.white),
                       )
                   ),
