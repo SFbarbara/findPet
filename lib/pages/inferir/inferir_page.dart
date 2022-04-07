@@ -51,8 +51,8 @@ class _InferirPageState extends State<InferirPage> {
   pickImage() async {
     var image = await picker.pickImage(source: ImageSource.camera);
     if (image == null) return null;
-
-     pickGalleryImage() async {
+  }
+  pickGalleryImage() async {
     var image = await picker.pickImage(source: ImageSource.gallery);
     if (image == null) return null;
 
@@ -61,6 +61,7 @@ class _InferirPageState extends State<InferirPage> {
     });
     classifyImage(_image);
   }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,13 +76,13 @@ class _InferirPageState extends State<InferirPage> {
         ),
       ),
       body: Container(
-        color: Colors.black.withOpacity(0.9),
+        color: Colors.cyan[800],
         padding: EdgeInsets.symmetric(horizontal: 35, vertical: 50),
         child: Container(
           alignment: Alignment.center,
           padding: EdgeInsets.all(30),
           decoration: BoxDecoration(
-            color: Color(0xFF2A363B),
+            color: Colors.black54,
             borderRadius: BorderRadius.circular(30),
           ),
           child: Column(
@@ -138,7 +139,7 @@ class _InferirPageState extends State<InferirPage> {
                         padding:
                             EdgeInsets.symmetric(horizontal: 24, vertical: 17),
                         decoration: BoxDecoration(
-                            color: Colors.blueGrey[600],
+                            color: Color.fromARGB(255, 0, 0, 0),
                             borderRadius: BorderRadius.circular(15)),
                         child: Text(
                           'Tire uma foto',
@@ -157,7 +158,7 @@ class _InferirPageState extends State<InferirPage> {
                         padding:
                             EdgeInsets.symmetric(horizontal: 24, vertical: 17),
                         decoration: BoxDecoration(
-                            color: Colors.blueGrey[600],
+                            color: Color.fromARGB(255, 0, 0, 0),
                             borderRadius: BorderRadius.circular(15)),
                         child: Text(
                           'Selecione da Galeria',
@@ -176,8 +177,3 @@ class _InferirPageState extends State<InferirPage> {
   }
 }
 
-  @override
-  Widget build(BuildContext context) {
-    throw UnimplementedError();
-  }
-}
