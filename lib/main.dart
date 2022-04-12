@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
-import 'login_widget.dart';
 import 'firebase_options.dart';
 import 'login_page.dart';
 
@@ -13,6 +12,7 @@ Future<void> main() async {
   runApp(MyApp());
 }
 
+// ignore: use_key_in_widget_constructors
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: primaryBlack,
           scaffoldBackgroundColor: Colors.cyan[800],
         ),
-        home: LoginPage(),
+        home: const LoginPage(),
     );
   }
 }

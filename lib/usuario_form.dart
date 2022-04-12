@@ -17,7 +17,7 @@ class UsuarioForm extends StatefulWidget {
 }
 
 class _UsuarioFormState extends State<UsuarioForm> {
-  GlobalKey<FormState> _key = GlobalKey<FormState>();
+  final GlobalKey<FormState> _key = GlobalKey<FormState>();
   UsuarioModel usuario = UsuarioModel();
 
   @override
@@ -57,6 +57,7 @@ class _UsuarioFormState extends State<UsuarioForm> {
                 if (value!.isEmpty) {
                   return "Campo não pode ficar vazio";
                 }
+                return null;
               },
               onsaved: (value) {
                 usuario.nome = value;
@@ -71,6 +72,7 @@ class _UsuarioFormState extends State<UsuarioForm> {
                 if (value!.isEmpty || !value.contains('@')) {
                   return "Informe um email válido";
                 }
+                return null;
               },
               onsaved: (value) {
                 usuario.email = value;
@@ -87,6 +89,7 @@ class _UsuarioFormState extends State<UsuarioForm> {
                 } else {
                   senha = value;
                 }
+                return null;
               },
               onsaved: (value) {
                 usuario.senha = senha;
@@ -100,6 +103,7 @@ class _UsuarioFormState extends State<UsuarioForm> {
                 if (value != senha) {
                   return "Confirmação de senha deve ser igual a senha";
                 }
+                return null;
               },
             ),
             Row(children: [
@@ -111,8 +115,8 @@ class _UsuarioFormState extends State<UsuarioForm> {
                           salvar(usuario);
                         }
                       },
-                      icon: Icon(Icons.save),
-                      label: Text("Salvar")))
+                      icon: const Icon(Icons.save),
+                      label: const Text("Salvar")))
             ])
           ],
         ),
@@ -136,12 +140,13 @@ class _UsuarioFormState extends State<UsuarioForm> {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('A senha informada é muito fácil.')));
+            const SnackBar(content: Text('A senha informada é muito fácil.')));
       } else if (e.code == 'email-already-in-use') {
         ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Email já foi utilizado por outra conta.')));
+            const SnackBar(content: Text('Email já foi utilizado por outra conta.')));
       }
     } catch (e) {
+      // ignore: avoid_print
       print(e);
     }
   }
@@ -162,6 +167,7 @@ class _UsuarioFormState extends State<UsuarioForm> {
       });
       
     } catch (e) {
+      // ignore: avoid_print
       print("Erro selecionando a foto do usuario: $e");
     }
   }
@@ -174,7 +180,7 @@ class _UsuarioFormState extends State<UsuarioForm> {
         return MemoryImage(base64Decode(usuario.foto!));
       }
     } else {
-      return ExactAssetImage("imagens/pessoa.jpg");
+      return const ExactAssetImage("imagens/pessoa.jpg");
     }
     
   }
