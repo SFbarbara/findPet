@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -67,7 +69,7 @@ class _InferirPageState extends State<InferirPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: Text("Verificar",
+        title: const Text("Verificar",
         style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w200,
@@ -77,10 +79,10 @@ class _InferirPageState extends State<InferirPage> {
       ),
       body: Container(
         color: Colors.cyan[800],
-        padding: EdgeInsets.symmetric(horizontal: 35, vertical: 50),
+        padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 50),
         child: Container(
           alignment: Alignment.center,
-          padding: EdgeInsets.all(30),
+          padding: const EdgeInsets.all(30),
           decoration: BoxDecoration(
             color: Colors.black54,
             borderRadius: BorderRadius.circular(30),
@@ -88,14 +90,16 @@ class _InferirPageState extends State<InferirPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // ignore: avoid_unnecessary_containers
               Container(
                 child: Center(
                   child: _loading == true
                       ? null 
+                      // ignore: avoid_unnecessary_containers
                       : Container(
                           child: Column(
                             children: [
-                              Container(
+                              SizedBox(
                                 height: 250,
                                 width: 250,
                                 child: ClipRRect(
@@ -106,20 +110,20 @@ class _InferirPageState extends State<InferirPage> {
                                   ),
                                 ),
                               ),
-                              Divider(
+                              const Divider(
                                 height: 25,
                                 thickness: 1,
                               ),
                               _output != null
                                   ? Text(
                                       'The object is: ${_output[0]['label']}!',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
                                           fontWeight: FontWeight.w400),
                                     )
                                   : Container(),
-                              Divider(
+                              const Divider(
                                 height: 25,
                                 thickness: 1,
                               ),
@@ -128,6 +132,7 @@ class _InferirPageState extends State<InferirPage> {
                         ),
                 ),
               ),
+              // ignore: avoid_unnecessary_containers
               Container(
                 child: Column(
                   children: [
@@ -137,17 +142,17 @@ class _InferirPageState extends State<InferirPage> {
                         width: MediaQuery.of(context).size.width - 200,
                         alignment: Alignment.center,
                         padding:
-                            EdgeInsets.symmetric(horizontal: 24, vertical: 17),
+                            const EdgeInsets.symmetric(horizontal: 24, vertical: 17),
                         decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: const Color.fromARGB(255, 0, 0, 0),
                             borderRadius: BorderRadius.circular(15)),
-                        child: Text(
+                        child: const Text(
                           'Tire uma foto',
                           style: TextStyle(color: Colors.white, fontSize: 16),
                      ),
                    ),
                   ),
-                   SizedBox(
+                   const SizedBox(
                       height: 30,
                     ),
                     GestureDetector(
@@ -156,13 +161,14 @@ class _InferirPageState extends State<InferirPage> {
                         width: MediaQuery.of(context).size.width - 200,
                         alignment: Alignment.center,
                         padding:
-                            EdgeInsets.symmetric(horizontal: 24, vertical: 17),
+                            const EdgeInsets.symmetric(horizontal: 24, vertical: 17),
                         decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 0, 0, 0),
+                            color: const Color.fromARGB(255, 0, 0, 0),
                             borderRadius: BorderRadius.circular(15)),
-                        child: Text(
+                        child: const Text(
                           'Selecione da Galeria',
-                          style: TextStyle(color: Colors.white, fontSize: 16),
+                          // ignore: unnecessary_const
+                          style: const TextStyle(color: Colors.white, fontSize: 16),
                         ),
                       ),
                     ),

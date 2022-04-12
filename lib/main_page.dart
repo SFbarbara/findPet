@@ -1,9 +1,9 @@
-import 'package:findPet/chat_page.dart';
-import 'package:findPet/notificacao_page.dart';
-import 'package:findPet/pages/inferir/inferir_page.dart';
-import 'package:findPet/settings_page.dart';
-import 'package:findPet/usuario.repository.dart';
-import 'package:findPet/usuario_model.dart';
+import 'package:findpet/pages/inferir/chat_page.dart';
+import 'package:findpet/notificacao_page.dart';
+import 'package:findpet/pages/inferir/inferir_page.dart';
+import 'package:findpet/pages/inferir/settings_page.dart';
+import 'package:findpet/usuario.repository.dart';
+import 'package:findpet/usuario_model.dart';
 import 'package:flutter/material.dart';
 import 'usuario_page.dart';
 
@@ -15,20 +15,22 @@ class MainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Página inicial"),
+        title: const Text("Página inicial"),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed:(){
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => InferirPage()));
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const InferirPage()));
         },
-        child: Icon(Icons.add_a_photo_outlined, color: Colors.white),
+        child: const Icon(Icons.add_a_photo_outlined, color: Colors.white),
       ),
       drawer: Drawer(
         backgroundColor: Colors.cyan[800],
         elevation: 5,
+        // ignore: avoid_unnecessary_containers
         child: Container(
           child: Column(
             children: [
+              // ignore: sized_box_for_whitespace
               Container(
                 width:double.infinity,
                 height: 150,
@@ -38,15 +40,16 @@ class MainPage extends StatelessWidget {
                     alignment: Alignment.center,
                     children: [
                       Column(
+                        // ignore: prefer_const_literals_to_create_immutables
                         children: [
-                          CircleAvatar(
+                          const CircleAvatar(
                             radius: 55.0,
                             backgroundImage: NetworkImage("https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=580&q=80")
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5,
                           ),
-                          Text(
+                          const Text(
                             "Seu nome", 
                             style: TextStyle(
                               color:Colors.white,
@@ -62,7 +65,7 @@ class MainPage extends StatelessWidget {
                           onPressed: (){
                           Navigator.of(context).push( MaterialPageRoute(builder: (context)=>UsuarioPage(usuario:usuario)) );
                           }, 
-                          icon: Icon(Icons.edit, color: Colors.white),
+                          icon: const Icon(Icons.edit, color: Colors.white),
                         ),
                       ),
                     ],
@@ -80,7 +83,7 @@ class MainPage extends StatelessWidget {
                       Row(
                         children: [
                           TextButton.icon(
-                            icon: Icon(Icons.notifications, color: Colors.white),
+                            icon: const Icon(Icons.notifications, color: Colors.white),
                             label: const Text(
                               "Notificações", 
                               style: TextStyle(
@@ -89,19 +92,19 @@ class MainPage extends StatelessWidget {
                               ),
                             ),
                             onPressed: (){
-                              Navigator.of(context).push( MaterialPageRoute(builder: (context)=>NotificacaoPage()));
+                              Navigator.of(context).push( MaterialPageRoute(builder: (context)=>const NotificacaoPage()));
                             }, 
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
                       Row(
                         children: [
                           TextButton.icon(
-	                          icon: Icon(Icons.chat, color: Colors.white),
-                            label: Text(
+	                          icon: const Icon(Icons.chat, color: Colors.white),
+                            label: const Text(
                               "Chat", 
                               style: TextStyle(
             	                  color:Colors.white, 
@@ -109,19 +112,19 @@ class MainPage extends StatelessWidget {
             	                ),
                             ),
                             onPressed: (){
-                              Navigator.of(context).push( MaterialPageRoute(builder: (context)=>ChatPage()) );
+                              Navigator.of(context).push( MaterialPageRoute(builder: (context)=>const ChatPage()) );
                             }, 
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Row(
                         children: [
                           TextButton.icon(
-	                          icon: Icon(Icons.explore_outlined, color: Colors.white),
-                            label: Text(
+	                          icon: const Icon(Icons.explore_outlined, color: Colors.white),
+                            label: const Text(
                               "Explorar", 
                               style: TextStyle(
             	                  color:Colors.white, 
@@ -134,14 +137,14 @@ class MainPage extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 5,
                       ),
                       Row(
                         children: [
                           TextButton.icon(
-	                          icon: Icon(Icons.account_circle_rounded, color: Colors.white),
-                            label: Text(
+	                          icon: const Icon(Icons.account_circle_rounded, color: Colors.white),
+                            label: const Text(
                               "Perfil", 
                               style: TextStyle(
             	                  color:Colors.white, 
@@ -158,7 +161,7 @@ class MainPage extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 600,
               ),
               Row(
@@ -168,9 +171,9 @@ class MainPage extends StatelessWidget {
                     alignment: Alignment.bottomRight,
                       child: IconButton(
                         onPressed: (){
-                          Navigator.of(context).push( MaterialPageRoute(builder: (context)=>SettingsPage()) );
+                          Navigator.of(context).push( MaterialPageRoute(builder: (context)=>const SettingsPage()) );
                         }, 
-                        icon: Icon(Icons.settings, color: Colors.white),
+                        icon: const Icon(Icons.settings, color: Colors.white),
                       )
                   ),
                   Container(
@@ -179,7 +182,7 @@ class MainPage extends StatelessWidget {
                         onPressed: (){
                           _logout();
                         }, 
-                        icon: Icon(Icons.logout, color: Colors.white),
+                        icon: const Icon(Icons.logout, color: Colors.white),
                       )
                   ),
                 ],

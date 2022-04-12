@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:findPet/usuario_model.dart';
+import 'package:findpet/usuario_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +7,7 @@ import 'login_widget.dart';
 import 'main_page.dart';
 
 class LoginPage extends StatefulWidget {
-  LoginPage({Key? key}) : super(key: key);
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -19,11 +19,13 @@ class _LoginPageState extends State<LoginPage> {
   autenticacao() {
     FirebaseAuth.instance.authStateChanges().listen((User? user) async {
       if (user == null) {
+        // ignore: avoid_print
         print('Usuário fez logout!');
         setState(() {
           usuario = null;
         });
       } else {
+        // ignore: avoid_print
         print('Usuario fez SigIn!');
         var snapshot =
             FirebaseFirestore.instance.collection('usuarios').doc(user.uid);
@@ -60,6 +62,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return usuario == null ? LoginWidget() : MainPage(usuario);
+    return usuario == null ? const LoginWidget() : MainPage(usuario);
   }
 }

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class NotificacaoPage extends StatelessWidget {
-  const NotificacaoPage({Key? key}) : super(key: key);
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Notificações")
+        title: const Text("Configurações"),
       ),
     );
   }

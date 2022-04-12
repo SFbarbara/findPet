@@ -1,4 +1,4 @@
-import 'package:findPet/usuario.repository.dart';
+import 'package:findpet/usuario.repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -17,7 +17,7 @@ class LoginWidget extends StatefulWidget {
 class _LoginWidgetState extends State<LoginWidget> {
   bool ver = false;
   UsuarioModel usuario = UsuarioModel();
-  GlobalKey<FormState> _key = GlobalKey<FormState>();
+  final GlobalKey<FormState> _key = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +53,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                     fontWeight: FontWeight.w700,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Container(
@@ -77,11 +77,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                           true,
                           onsaved: (senha) => usuario.senha = senha,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         _botaoEntrar(),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         _botaoEsqueceu(),
@@ -105,7 +105,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             onPressed: () {
               _login();
             },
-            child: Text("Entrar")
+            child: const Text("Entrar")
           ),
         ),
       ],
@@ -129,14 +129,14 @@ class _LoginWidgetState extends State<LoginWidget> {
               _key.currentState?.save();
               try {
                 await UsuarioRepository().recuperar(usuario.email!);
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Código de recuperação enviado no email")));
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Código de recuperação enviado no email")));
               } catch (e) {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Erro $e")));
                 //erro - o endereço de e-mail está mal formatado
               }
               
             }, 
-            child: Text(
+            child: const Text(
               "Clique aqui",
               style: TextStyle(
                 color: Colors.white,
@@ -165,9 +165,9 @@ class _LoginWidgetState extends State<LoginWidget> {
           TextButton(
             onPressed: () {
               Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => UsuarioPage()));
+                .push(MaterialPageRoute(builder: (context) => const UsuarioPage()));
             },
-            child: Text(
+            child: const Text(
               "Cadastre-se",
               style: TextStyle(
                 color: Colors.white,
@@ -184,16 +184,17 @@ class _LoginWidgetState extends State<LoginWidget> {
     _key.currentState!.save();
 
     try {
+      // ignore: unused_local_variable
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(
               email: usuario.email!, password: usuario.senha!);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Email desconhecido!")));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Email desconhecido!")));
       } else if (e.code == 'wrong-password') {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Senha incorreta!")));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Senha incorreta!")));
       } else if (e.code == 'too-many-requests') {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Usuario bloqueado por muitas tentativas")));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Usuario bloqueado por muitas tentativas")));
       }
     }
   }
