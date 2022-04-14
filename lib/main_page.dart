@@ -29,6 +29,7 @@ class MainPage extends StatelessWidget {
         // ignore: avoid_unnecessary_containers
         child: Container(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               // ignore: sized_box_for_whitespace
               Container(
@@ -161,31 +162,31 @@ class MainPage extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 600,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    alignment: Alignment.bottomRight,
-                      child: IconButton(
-                        onPressed: (){
-                          Navigator.of(context).push( MaterialPageRoute(builder: (context)=>const SettingsPage()) );
-                        }, 
-                        icon: const Icon(Icons.settings, color: Colors.white),
-                      )
-                  ),
-                  Container(
-                    alignment: Alignment.bottomRight,
-                      child: IconButton(
-                        onPressed: (){
-                          _logout();
-                        }, 
-                        icon: const Icon(Icons.logout, color: Colors.white),
-                      )
-                  ),
-                ],
+
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      alignment: Alignment.bottomRight,
+                        child: IconButton(
+                          onPressed: (){
+                            Navigator.of(context).push( MaterialPageRoute(builder: (context)=>const SettingsPage()) );
+                          }, 
+                          icon: const Icon(Icons.settings, color: Colors.white),
+                        )
+                    ),
+                    Container(
+                      alignment: Alignment.bottomRight,
+                        child: IconButton(
+                          onPressed: (){
+                            _logout();
+                          }, 
+                          icon: const Icon(Icons.logout, color: Colors.white),
+                        )
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
