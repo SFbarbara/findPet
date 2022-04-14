@@ -41,8 +41,8 @@ class _LoginWidgetState extends State<LoginWidget> {
             ],
           ),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(200.0),
+        body: SingleChildScrollView(child: Padding(
+          padding: const EdgeInsets.all(20.0),
           child: Center(
             child: Column(
               children: [
@@ -93,7 +93,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               ],
             ),
           ),
-        ),
+        )),
     );
   }
 
@@ -187,7 +187,7 @@ class _LoginWidgetState extends State<LoginWidget> {
       // ignore: unused_local_variable
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(
-              email: usuario.email!, password: usuario.senha!);
+              email: usuario.email!.trim(), password: usuario.senha!);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Email desconhecido!")));
