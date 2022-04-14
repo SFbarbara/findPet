@@ -18,23 +18,27 @@ class _InferirPageState extends State<InferirPage> {
   late List _output;
   final picker = ImagePicker();
 
+  // ignore: unused_element
+  static get filepath => null;
+
   @override
-    void initState() {
+  void initState() {
     super.initState();
     loadModel().then((value) {
       setState(() {});
     });
   }
+
   @override
   void dispose() {
     super.dispose();
     Tflite.close();
   }
 
-   classifyImage(File image) async {
+  classifyImage(File image) async {
     var output = await Tflite.runModelOnImage(
       path: image.path,
-      numResults: 36, 
+      numResults: 36,
       threshold: 0.5,
       imageMean: 127.5,
       imageStd: 127.5,
@@ -45,15 +49,11 @@ class _InferirPageState extends State<InferirPage> {
     });
   }
 
-  loadModel() async {
-    await Tflite.loadModel(
-        model: 'assets/model.tflite', labels: 'assets/labels.txt');
-  }
-
   pickImage() async {
     var image = await picker.pickImage(source: ImageSource.camera);
     if (image == null) return null;
   }
+
   pickGalleryImage() async {
     var image = await picker.pickImage(source: ImageSource.gallery);
     if (image == null) return null;
@@ -63,14 +63,15 @@ class _InferirPageState extends State<InferirPage> {
     });
     classifyImage(_image);
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Text("Verificar",
-        style: TextStyle(
+        title: const Text(
+          "Verificar",
+          style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w200,
               fontSize: 20,
@@ -94,7 +95,7 @@ class _InferirPageState extends State<InferirPage> {
               Container(
                 child: Center(
                   child: _loading == true
-                      ? null 
+                      ? null
                       // ignore: avoid_unnecessary_containers
                       : Container(
                           child: Column(
@@ -141,18 +142,18 @@ class _InferirPageState extends State<InferirPage> {
                       child: Container(
                         width: MediaQuery.of(context).size.width - 200,
                         alignment: Alignment.center,
-                        padding:
-                            const EdgeInsets.symmetric(horizontal: 24, vertical: 17),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 17),
                         decoration: BoxDecoration(
                             color: const Color.fromARGB(255, 0, 0, 0),
                             borderRadius: BorderRadius.circular(15)),
                         child: const Text(
                           'Tire uma foto',
                           style: TextStyle(color: Colors.white, fontSize: 16),
-                     ),
-                   ),
-                  ),
-                   const SizedBox(
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
                       height: 30,
                     ),
                     GestureDetector(
@@ -160,15 +161,16 @@ class _InferirPageState extends State<InferirPage> {
                       child: Container(
                         width: MediaQuery.of(context).size.width - 200,
                         alignment: Alignment.center,
-                        padding:
-                            const EdgeInsets.symmetric(horizontal: 24, vertical: 17),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 17),
                         decoration: BoxDecoration(
                             color: const Color.fromARGB(255, 0, 0, 0),
                             borderRadius: BorderRadius.circular(15)),
                         child: const Text(
                           'Selecione da Galeria',
                           // ignore: unnecessary_const
-                          style: const TextStyle(color: Colors.white, fontSize: 16),
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 16),
                         ),
                       ),
                     ),
@@ -181,5 +183,16 @@ class _InferirPageState extends State<InferirPage> {
       ),
     );
   }
-}
 
+  loadModel() async {
+    String? res = await Tflite.loadModel(
+        model: "train/model.tflite",
+        labels: "train/labels.txt",
+        numThreads: 1, // defaults to 1
+        isAsset:
+            true, // defaults to true, set to false to load resources outside assets
+        useGpuDelegate:
+            false // defaults to false, set to true to use GPU delegate
+        );
+  }
+}
