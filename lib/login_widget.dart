@@ -45,7 +45,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           child: Center(
             child: Column(
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 150,
                 ),
                 Text(
