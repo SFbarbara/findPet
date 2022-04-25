@@ -41,16 +41,18 @@ class _LoginWidgetState extends State<LoginWidget> {
             ],
           ),
         ),
-        body: SingleChildScrollView(child: Padding(
-          padding: const EdgeInsets.all(20.0),
+        body: SingleChildScrollView(
           child: Center(
             child: Column(
               children: [
+                SizedBox(
+                  height: 150,
+                ),
                 Text(
                   "Faça login",
                   style: GoogleFonts.nanumGothic(
-                    fontSize: 25,
-                    fontWeight: FontWeight.w700,
+                    fontSize: 30,
+                    fontWeight: FontWeight.w800,
                   ),
                 ),
                 const SizedBox(
@@ -93,7 +95,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               ],
             ),
           ),
-        )),
+        ),
     );
   }
 
