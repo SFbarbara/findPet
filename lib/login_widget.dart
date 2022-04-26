@@ -41,62 +41,61 @@ class _LoginWidgetState extends State<LoginWidget> {
             ],
           ),
         ),
-        body: SingleChildScrollView(child: Padding(
-          padding: const EdgeInsets.all(20.0),
+        body: SingleChildScrollView(
           child: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(60.0),
-              child: Column(
-                children: [
-                  Text(
-                    "Faça login",
-                    style: GoogleFonts.nanumGothic(
-                      fontSize: 25,
-                      fontWeight: FontWeight.w700,
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 150,
+                ),
+                Text(
+                  "Faça login",
+                  style: GoogleFonts.nanumGothic(
+                    fontSize: 30,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                Container(
+                  width: 400,
+                  padding: const EdgeInsets.all(30.0),
+                  child: Form(
+                    key: _key,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        InputField(
+                          "Email",
+                          Icons.email,
+                          false,
+                          onsaved: (email) => usuario.email = email,
+                        ),
+                        InputField(
+                          "Senha",
+                          Icons.password,
+                          true,
+                          onsaved: (senha) => usuario.senha = senha,
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        _botaoEntrar(),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        _botaoEsqueceu(),
+                        _botaoCadastrar(),
+                     ],
                     ),
                   ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Container(
-                    width: 400,
-                    padding: const EdgeInsets.all(30.0),
-                    child: Form(
-                      key: _key,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          InputField(
-                            "Email",
-                            Icons.email,
-                            false,
-                            onsaved: (email) => usuario.email = email,
-                          ),
-                          InputField(
-                            "Senha",
-                            Icons.password,
-                            true,
-                            onsaved: (senha) => usuario.senha = senha,
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          _botaoEntrar(),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          _botaoEsqueceu(),
-                          _botaoCadastrar(),
-                       ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
-        )),
+        ),
     );
   }
 
