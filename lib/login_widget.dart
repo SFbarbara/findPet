@@ -193,7 +193,7 @@ class _LoginWidgetState extends State<LoginWidget> {
               email: usuario.email!.trim(), password: usuario.senha!);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Email desconhecido!")));
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Usuário não encontrado!")));
       } else if (e.code == 'wrong-password') {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Senha incorreta!")));
       } else if (e.code == 'too-many-requests') {
