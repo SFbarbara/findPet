@@ -134,10 +134,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                 await UsuarioRepository().recuperar(usuario.email!);
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Código de recuperação enviado no email")));
               } catch (e) {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Erro $e")));
-                //erro - o endereço de e-mail está mal formatado
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Erro: o endereço de e-mail está mal formatado ($e)")));
               }
-              
             }, 
             child: const Text(
               "Clique aqui",
