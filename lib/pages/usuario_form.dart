@@ -97,7 +97,7 @@ class _UsuarioFormState extends State<UsuarioForm> {
               },
             ),
             InputField(
-              "Confirmação",
+              "Confirmação da senha",
               Icons.add_to_photos_outlined,
               true,
               validator: (value) {
