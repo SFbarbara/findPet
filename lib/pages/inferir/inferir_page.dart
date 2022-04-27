@@ -117,7 +117,7 @@ class _InferirPageState extends State<InferirPage> {
                               ),
                               _output != null
                                   ? Text(
-                                      'The object is: ${_output[0]['label']}!',
+                                      'Essa foto: ${_output[0]['label']}!',
                                       style: const TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
