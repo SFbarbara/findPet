@@ -1,6 +1,6 @@
-import 'usuario_model.dart';
+import 'package:findpet/models/usuario_model.dart';
+import 'package:findpet/pages/usuario_form.dart';
 import 'package:flutter/material.dart';
-import 'usuario_form.dart';
 
 
 class UsuarioPage extends StatelessWidget {
@@ -11,7 +11,6 @@ class UsuarioPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Novo Usuário"),
       ),
       body: UsuarioForm(usuario:usuario),
     );

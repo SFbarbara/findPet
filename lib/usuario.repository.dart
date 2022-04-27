@@ -1,10 +1,9 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:findpet/models/usuario_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-
-import 'usuario_model.dart';
 
 class UsuarioRepository {
   Future<void> salvar(UsuarioModel usuario) async {

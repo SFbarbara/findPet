@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:findpet/usuario_model.dart';
+import 'package:findpet/models/usuario_model.dart';
+import 'package:findpet/pages/login_widget.dart';
+import 'package:findpet/pages/main_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'login_widget.dart';
-import 'main_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

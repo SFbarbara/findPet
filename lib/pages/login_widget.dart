@@ -1,10 +1,11 @@
+import 'package:findpet/input_field.dart';
+import 'package:findpet/models/usuario_model.dart';
 import 'package:findpet/usuario.repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'input_field.dart';
 
-import 'usuario_model.dart';
+
 import 'usuario_page.dart';
 
 class LoginWidget extends StatefulWidget {

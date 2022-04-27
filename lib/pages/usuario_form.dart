@@ -1,12 +1,13 @@
 import 'dart:convert';
 
-import 'input_field.dart';
-import 'usuario.repository.dart';
+import 'package:findpet/input_field.dart';
+import 'package:findpet/models/usuario_model.dart';
+import 'package:findpet/foto_usuario.dart';
+
+import '../usuario.repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
-import 'usuario_model.dart';
 
 class UsuarioForm extends StatefulWidget {
   final UsuarioModel? usuario;
@@ -44,7 +45,7 @@ class _UsuarioFormState extends State<UsuarioForm> {
                 padding: const EdgeInsets.all(8.0),
                 child: CircleAvatar(
                   radius: 80,
-                  backgroundImage: _foto(),
+                  backgroundImage: FotoUsuario(usuario).getImage(),
                 ),
               ),
             ),  
@@ -170,18 +171,5 @@ class _UsuarioFormState extends State<UsuarioForm> {
       // ignore: avoid_print
       print("Erro selecionando a foto do usuario: $e");
     }
-  }
-
-  _foto() {
-    if (usuario.foto!=null) {
-      if (usuario.foto!.contains("https")) {
-        return NetworkImage(usuario.foto!);
-      } else {
-        return MemoryImage(base64Decode(usuario.foto!));
-      }
-    } else {
-      return const ExactAssetImage("imagens/pessoa.jpg");
-    }
-    
   }
 }
