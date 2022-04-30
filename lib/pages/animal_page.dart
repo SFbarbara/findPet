@@ -1,6 +1,12 @@
+import 'dart:convert';
+
+import 'package:findpet/foto_cachorro.dart';
 import 'package:findpet/input_field.dart';
 import 'package:findpet/models/animal_model.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+import 'foto_animal_tile.dart';
 
 class AnimalPage extends StatefulWidget {
   final AnimalModel? animal;
@@ -14,8 +20,6 @@ class _AnimalPageState extends State<AnimalPage> {
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   AnimalModel animal = AnimalModel();
 
-  bool checkValue = false;
-
   @override
   void initState() {
     super.initState();
@@ -24,13 +28,10 @@ class _AnimalPageState extends State<AnimalPage> {
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Cadastre seu cachorro")
-      ),
+      appBar: AppBar(title: const Text("Cadastre seu cachorro")),
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
@@ -45,7 +46,8 @@ class _AnimalPageState extends State<AnimalPage> {
                       padding: const EdgeInsets.all(8.0),
                       child: CircleAvatar(
                         radius: 80,
-                        backgroundImage: NetworkImage("https://static.vecteezy.com/ti/vetor-gratis/p1/2668165-coleira-cachorro-cara-bonito-com-osso-animal-animal-de-estimacao-domestico-cartoon-gr%C3%A1tis-vetor.jpg"),
+                        backgroundImage: NetworkImage(
+                            "https://static.vecteezy.com/ti/vetor-gratis/p1/2668165-coleira-cachorro-cara-bonito-com-osso-animal-animal-de-estimacao-domestico-cartoon-gr%C3%A1tis-vetor.jpg"),
                       ),
                     ),
                   ),
@@ -57,13 +59,13 @@ class _AnimalPageState extends State<AnimalPage> {
                     Icons.autofps_select_sharp,
                     false,
                     initialValue: animal.nome,
-                    validator: (value){
-                      if(value!.isEmpty){
+                    validator: (value) {
+                      if (value!.isEmpty) {
                         return "Campo não pode ficar vazio";
                       }
                       return null;
                     },
-                    onsaved: (value){
+                    onsaved: (value) {
                       animal.nome = value;
                     },
                   ),
@@ -72,13 +74,13 @@ class _AnimalPageState extends State<AnimalPage> {
                     Icons.pets,
                     false,
                     initialValue: animal.raca,
-                    validator: (value){
-                      if(value!.isEmpty){
+                    validator: (value) {
+                      if (value!.isEmpty) {
                         return "Campo não pode ficar vazio";
                       }
                       return null;
                     },
-                    onsaved: (value){
+                    onsaved: (value) {
                       animal.raca = value;
                     },
                   ),
@@ -87,60 +89,59 @@ class _AnimalPageState extends State<AnimalPage> {
                     Icons.date_range_rounded,
                     false,
                     initialValue: animal.nasc,
-                    validator: (value){
-                      if(value!.isEmpty){
+                    validator: (value) {
+                      if (value!.isEmpty) {
                         return "Campo não pode ficar vazio";
                       }
                       return null;
                     },
-                    onsaved: (value){
+                    onsaved: (value) {
                       animal.nasc = value;
                     },
                   ),
-                  Column(
-                    children: [
-                      CheckboxListTile(
-                        title: Text("Fêmea"),
-                        value: checkValue,
-                        onChanged: (bool? valor){
-                          setState(() {
-                            checkValue = valor!;
-                          });
-                        },
-                      ),
-                      CheckboxListTile(
-                        title: Text("Macho"),
-                        value: checkValue,
-                        onChanged: (bool? valor){
-                          setState(() {
-                            if(checkValue!=null){
-                              checkValue = valor!;
-                            }
-                          });
-                        },
-                      ),
-                    ],
+                  ListTile(
+                    leading: Radio<String?>(
+                      value: "Macho",
+                      groupValue: animal.genero,
+                      onChanged: (value) {
+                        setState(() {
+                          animal.genero = value;
+                        });
+                      },
+                    ),
+                    title: Text("Macho"),
+                  ),
+                  ListTile(
+                    leading: Radio<String?>(
+                      value: "Fêmea",
+                      groupValue: animal.genero,
+                      onChanged: (value) {
+                        setState(() {
+                          animal.genero = value;
+                        });
+                      },
+                    ),
+                    title: Text("Fêmea"),
                   ),
                   InputField(
                     "Descrição",
                     Icons.description_rounded,
                     false,
                     initialValue: animal.descricao,
-                    validator: (value){
-                      if(value!.isEmpty){
+                    validator: (value) {
+                      if (value!.isEmpty) {
                         return "Campo não pode ficar vazio";
                       }
                       return null;
                     },
-                    onsaved: (value){
+                    onsaved: (value) {
                       animal.descricao = value;
                     },
                   ),
                   Row(
                     children: [
                       Expanded(
-                        child: 
-                          ElevatedButton.icon(
+                        child: ElevatedButton.icon(
                             onPressed: () {
                               /*if (_key.currentState!.validate()) {
                                 _key.currentState!.save();
@@ -148,11 +149,18 @@ class _AnimalPageState extends State<AnimalPage> {
                               }*/
                             },
                             icon: const Icon(Icons.save),
-                            label: const Text("Salvar")
-                          ),
+                            label: const Text("Salvar")),
                       ),
                     ],
                   ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text("Inclua 10 fotos do seu cachorro"),
+                  Wrap(
+                    children:
+                        animal.fotos.map((e) => FotoAnimalTile(e)).toList(),
+                  )
                 ],
               ),
             ),
@@ -161,14 +169,24 @@ class _AnimalPageState extends State<AnimalPage> {
       ),
     );
   }
-}
 
+  Future<void> _fotoAnimal() async {
+    final ImagePicker _picker = ImagePicker();
+    try {
+      final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+
+      photo!.readAsBytes().then((imagem) {
+        setState(() {
+          animal.foto = (base64Encode(imagem));
+        });
+      });
+    } catch (e) {
+      // ignore: avoid_print
+      print("Erro selecionando a foto do cachorro: $e");
+    }
+  }
+}
 
 /*salvar(AnimalModel animal) async {
 
 }*/
-
-
-Future<void> _fotoAnimal() async {
-
-}
