@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:findpet/foto_cachorro.dart';
 import 'package:findpet/input_field.dart';
 import 'package:findpet/models/animal_model.dart';
 import 'package:flutter/material.dart';
@@ -42,8 +41,8 @@ class _AnimalPageState extends State<AnimalPage> {
                 children: [
                   GestureDetector(
                     onTap: _fotoAnimal,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: CircleAvatar(
                         radius: 80,
                         backgroundImage: NetworkImage(
@@ -51,6 +50,7 @@ class _AnimalPageState extends State<AnimalPage> {
                       ),
                     ),
                   ),
+                
                   const SizedBox(
                     height: 10,
                   ),
@@ -109,7 +109,7 @@ class _AnimalPageState extends State<AnimalPage> {
                         });
                       },
                     ),
-                    title: Text("Macho"),
+                    title: const Text("Macho"),
                   ),
                   ListTile(
                     leading: Radio<String?>(
@@ -121,7 +121,7 @@ class _AnimalPageState extends State<AnimalPage> {
                         });
                       },
                     ),
-                    title: Text("Fêmea"),
+                    title: const Text("Fêmea"),
                   ),
                   InputField(
                     "Descrição",
@@ -153,10 +153,10 @@ class _AnimalPageState extends State<AnimalPage> {
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Text("Inclua 10 fotos do seu cachorro"),
+                  const Text("Inclua 10 fotos do seu cachorro"),
                   Wrap(
                     children:
                         animal.fotos.map((e) => FotoAnimalTile(e)).toList(),
@@ -177,15 +177,16 @@ class _AnimalPageState extends State<AnimalPage> {
 
       photo!.readAsBytes().then((imagem) {
         setState(() {
-          animal.foto = (base64Encode(imagem));
+          animal.foto = base64Encode(imagem);
         });
       });
     } catch (e) {
       // ignore: avoid_print
-      print("Erro selecionando a foto do cachorro: $e");
+      print("Erro selecionando a foto do usuario: $e");
     }
   }
 }
+
 
 /*salvar(AnimalModel animal) async {
 

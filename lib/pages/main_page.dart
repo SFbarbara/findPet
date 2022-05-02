@@ -6,7 +6,6 @@ import 'package:findpet/pages/usuario_page.dart';
 import 'package:findpet/usuario.repository.dart';
 import 'package:flutter/material.dart';
 
-
 class MainPage extends StatelessWidget {
   final UsuarioModel? usuario;
   const MainPage(this.usuario, {Key? key}) : super(key: key);
@@ -18,8 +17,9 @@ class MainPage extends StatelessWidget {
         title: const Text("Página inicial"),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed:(){
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => const InferirPage()));
+        onPressed: () {
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const InferirPage()));
         },
         child: const Icon(Icons.add_a_photo_outlined, color: Colors.white),
       ),
@@ -33,7 +33,7 @@ class MainPage extends StatelessWidget {
             children: [
               // ignore: sized_box_for_whitespace
               Container(
-                width:double.infinity,
+                width: double.infinity,
                 height: 150,
                 child: Card(
                   color: Colors.black54,
@@ -44,16 +44,16 @@ class MainPage extends StatelessWidget {
                         // ignore: prefer_const_literals_to_create_immutables
                         children: [
                           CircleAvatar(
-                            radius: 55.0,
-                            backgroundImage: FotoUsuario(usuario!).getImage()
-                          ),
+                              radius: 55.0,
+                              backgroundImage:
+                                  FotoUsuario(usuario!).getImage()),
                           const SizedBox(
                             height: 5,
                           ),
-                           Text(
-                          usuario?.nome??"", 
+                          Text(
+                            usuario?.nome ?? "",
                             style: const TextStyle(
-                              color:Colors.white,
+                              color: Colors.white,
                               fontSize: 15,
                             ),
                           ),
@@ -70,21 +70,24 @@ class MainPage extends StatelessWidget {
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children:[ 
+                    children: [
                       Row(
                         children: [
                           TextButton.icon(
-	                          icon: const Icon(Icons.account_circle_rounded, color: Colors.white),
+                            icon: const Icon(Icons.account_circle_rounded,
+                                color: Colors.white),
                             label: const Text(
-                              "Perfil", 
+                              "Perfil",
                               style: TextStyle(
-            	                  color:Colors.white, 
+                                color: Colors.white,
                                 fontSize: 18,
-            	                ),
+                              ),
                             ),
-                            onPressed: (){
-                              Navigator.of(context).push( MaterialPageRoute(builder: (context)=>UsuarioPage(usuario:usuario)) );
-                            }, 
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) =>
+                                      UsuarioPage(usuario: usuario)));
+                            },
                           ),
                         ],
                       ),
@@ -94,17 +97,19 @@ class MainPage extends StatelessWidget {
                       Row(
                         children: [
                           TextButton.icon(
-	                          icon: const Icon(Icons.add_to_photos_rounded, color: Colors.white),
+                            icon: const Icon(Icons.add_to_photos_rounded,
+                                color: Colors.white),
                             label: const Text(
-                              "Cadastro do animal", 
+                              "Cadastro do animal",
                               style: TextStyle(
-            	                  color:Colors.white, 
+                                color: Colors.white,
                                 fontSize: 18,
-            	                ),
+                              ),
                             ),
-                            onPressed: (){
-                              Navigator.of(context).push( MaterialPageRoute(builder: (context)=> AnimalPage()) );
-                            }, 
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (context) => const AnimalPage()));
+                            },
                           ),
                         ],
                       ),
@@ -120,14 +125,13 @@ class MainPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      alignment: Alignment.bottomRight,
+                        alignment: Alignment.bottomRight,
                         child: IconButton(
-                          onPressed: (){
+                          onPressed: () {
                             _logout();
-                          }, 
+                          },
                           icon: const Icon(Icons.logout, color: Colors.white),
-                        )
-                    ),
+                        )),
                   ],
                 ),
               ),

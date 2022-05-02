@@ -8,14 +8,15 @@ class AnimalModel {
   String? descricao;
   List<String?> fotos = List.filled(10, null);
 
-  AnimalModel(
-      {this.id,
-      this.nome,
-      this.raca,
-      this.nasc,
-      this.foto,
-      this.genero,
-      this.descricao});
+  AnimalModel({
+    this.id,
+    this.nome,
+    this.raca,
+    this.nasc,
+    this.foto,
+    this.genero,
+    this.descricao,
+  });
 
   Map<String, dynamic> toJson() {
     return {
