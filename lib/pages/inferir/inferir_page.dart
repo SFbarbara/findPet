@@ -101,8 +101,8 @@ class _InferirPageState extends State<InferirPage> {
                           child: Column(
                             children: [
                               SizedBox(
-                                height: 250,
-                                width: 250,
+                                height: 230,
+                                width: 230,
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(30),
                                   child: Image.file(
@@ -112,7 +112,7 @@ class _InferirPageState extends State<InferirPage> {
                                 ),
                               ),
                               const Divider(
-                                height: 25,
+                                height: 20,
                                 thickness: 1,
                               ),
                               _output != null
@@ -125,7 +125,7 @@ class _InferirPageState extends State<InferirPage> {
                                     )
                                   : Container(),
                               const Divider(
-                                height: 25,
+                                height: 20,
                                 thickness: 1,
                               ),
                             ],
@@ -154,7 +154,7 @@ class _InferirPageState extends State<InferirPage> {
                       ),
                     ),
                     const SizedBox(
-                      height: 30,
+                      height: 25,
                     ),
                     GestureDetector(
                       onTap: pickGalleryImage,

@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:findpet/input_field.dart';
 import 'package:findpet/models/animal_model.dart';
+import 'package:findpet/text_input_formater.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -50,7 +51,6 @@ class _AnimalPageState extends State<AnimalPage> {
                       ),
                     ),
                   ),
-                
                   const SizedBox(
                     height: 10,
                   ),
@@ -88,12 +88,17 @@ class _AnimalPageState extends State<AnimalPage> {
                     "Data de nascimento",
                     Icons.date_range_rounded,
                     false,
+                    inputType: TextInputType.datetime,
+                    inputFormatters: [DateTextFormatter()],
+                    maxLength: 10,
                     initialValue: animal.nasc,
                     validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Campo não pode ficar vazio";
+                      try {
+                        DateTime.parse(value!);
+                        return null;
+                      } catch (e) {
+                        return "Data Inválida";
                       }
-                      return null;
                     },
                     onsaved: (value) {
                       animal.nasc = value;
@@ -143,10 +148,10 @@ class _AnimalPageState extends State<AnimalPage> {
                       Expanded(
                         child: ElevatedButton.icon(
                             onPressed: () {
-                              /*if (_key.currentState!.validate()) {
+                              if (_key.currentState!.validate()) {
                                 _key.currentState!.save();
-                                salvar(animal);
-                              }*/
+                                // salvar(animal);
+                              }
                             },
                             icon: const Icon(Icons.save),
                             label: const Text("Salvar")),
@@ -182,7 +187,7 @@ class _AnimalPageState extends State<AnimalPage> {
       });
     } catch (e) {
       // ignore: avoid_print
-      print("Erro selecionando a foto do usuario: $e");
+      print("Erro selecionando a foto do Animal: $e");
     }
   }
 }
