@@ -40,21 +40,14 @@ class _AnimalPageState extends State<AnimalPage> {
               child: Column(
                 children: [
                   GestureDetector(
-<<<<<<< HEAD
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-=======
-                    onTap: _fotoAnimal,
-                    child: const Padding(
-                      padding: EdgeInsets.all(8.0),
->>>>>>> e4ff0649be42401fcd71e32b7fb5dd810d3fbc0b
                       child: CircleAvatar(
                         radius: 80,
                         //backgroundImage: FotoCachorro().getImage(),
                       ),
                     ),
                   ),
-<<<<<<< HEAD
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -85,9 +78,6 @@ class _AnimalPageState extends State<AnimalPage> {
                       ), 
                     ],
                   ), 
-=======
-                
->>>>>>> e4ff0649be42401fcd71e32b7fb5dd810d3fbc0b
                   const SizedBox(
                     height: 10,
                   ),
@@ -182,7 +172,7 @@ class _AnimalPageState extends State<AnimalPage> {
                             onPressed: () {
                               if (_key.currentState!.validate()) {
                                 _key.currentState!.save();
-                                salvar(animal);
+                                _salvar(animal);
                               }
                             },
                             icon: const Icon(Icons.save),
@@ -197,7 +187,7 @@ class _AnimalPageState extends State<AnimalPage> {
                   Wrap(
                     children:
                         animal.fotos.map((e) => FotoAnimalTile(e)).toList(),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -206,6 +196,8 @@ class _AnimalPageState extends State<AnimalPage> {
       ),
     );
   }
+
+  void _salvar(AnimalModel animal) {}
 
   Future<void> _fotoAnimal(ImageSource source) async {
     final ImagePicker _picker = ImagePicker();
@@ -224,15 +216,3 @@ class _AnimalPageState extends State<AnimalPage> {
   }
 }
 
-<<<<<<< HEAD
-salvar(AnimalModel animal) async {
-  try {
-    if(animal.id == null){
-=======
-
-/*salvar(AnimalModel animal) async {
->>>>>>> e4ff0649be42401fcd71e32b7fb5dd810d3fbc0b
-
-    }
-  } catch(e) {}
-}
