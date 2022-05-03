@@ -6,7 +6,7 @@ class FotoCachorro {
 
   FotoCachorro(this.foto);
 
-  ImageProvider getImage() {
+  getImage() {
     if (foto != null) {
       if (foto!.contains("https")) {
         return NetworkImage(foto!);

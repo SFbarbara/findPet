@@ -185,6 +185,7 @@ class _InferirPageState extends State<InferirPage> {
   }
 
   loadModel() async {
+    // ignore: unused_local_variable
     String? res = await Tflite.loadModel(
         model: "train/model.tflite",
         labels: "train/labels.txt",

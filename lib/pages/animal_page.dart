@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:findpet/foto_cachorro.dart';
 import 'package:findpet/input_field.dart';
 import 'package:findpet/models/animal_model.dart';
 import 'package:flutter/material.dart';
@@ -41,14 +40,21 @@ class _AnimalPageState extends State<AnimalPage> {
               child: Column(
                 children: [
                   GestureDetector(
+<<<<<<< HEAD
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
+=======
+                    onTap: _fotoAnimal,
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+>>>>>>> e4ff0649be42401fcd71e32b7fb5dd810d3fbc0b
                       child: CircleAvatar(
                         radius: 80,
                         //backgroundImage: FotoCachorro().getImage(),
                       ),
                     ),
                   ),
+<<<<<<< HEAD
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -79,6 +85,9 @@ class _AnimalPageState extends State<AnimalPage> {
                       ), 
                     ],
                   ), 
+=======
+                
+>>>>>>> e4ff0649be42401fcd71e32b7fb5dd810d3fbc0b
                   const SizedBox(
                     height: 10,
                   ),
@@ -137,7 +146,7 @@ class _AnimalPageState extends State<AnimalPage> {
                         });
                       },
                     ),
-                    title: Text("Macho"),
+                    title: const Text("Macho"),
                   ),
                   ListTile(
                     leading: Radio<String?>(
@@ -149,7 +158,7 @@ class _AnimalPageState extends State<AnimalPage> {
                         });
                       },
                     ),
-                    title: Text("Fêmea"),
+                    title: const Text("Fêmea"),
                   ),
                   InputField(
                     "Descrição",
@@ -205,19 +214,24 @@ class _AnimalPageState extends State<AnimalPage> {
 
       photo!.readAsBytes().then((imagem) {
         setState(() {
-          animal.foto = (base64Encode(imagem));
+          animal.foto = base64Encode(imagem);
         });
       });
     } catch (e) {
       // ignore: avoid_print
-      print("Erro selecionando a foto do cachorro: $e");
+      print("Erro selecionando a foto do usuario: $e");
     }
   }
 }
 
+<<<<<<< HEAD
 salvar(AnimalModel animal) async {
   try {
     if(animal.id == null){
+=======
+
+/*salvar(AnimalModel animal) async {
+>>>>>>> e4ff0649be42401fcd71e32b7fb5dd810d3fbc0b
 
     }
   } catch(e) {}
