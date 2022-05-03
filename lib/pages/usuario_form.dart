@@ -40,7 +40,6 @@ class _UsuarioFormState extends State<UsuarioForm> {
         child: Column(
           children: [
             GestureDetector(
-              onTap: _tirarFoto,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CircleAvatar(
@@ -48,7 +47,40 @@ class _UsuarioFormState extends State<UsuarioForm> {
                   backgroundImage: FotoUsuario(usuario).getImage(),
                 ),
               ),
-            ),  
+            ), 
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: Row(
+                    children:[
+                      ElevatedButton.icon(
+                        onPressed: (){
+                          _tirarFoto(ImageSource.camera);
+                        },
+                        icon: const Icon(Icons.camera),
+                        label: const Text("Camera"),
+                      )
+                    ],
+                  ),
+                ),
+                Row(
+                  children:[
+                    ElevatedButton.icon(
+                      onPressed: (){
+                        _tirarFoto(ImageSource.gallery);
+                      },
+                      icon: const Icon(Icons.image_search_outlined),
+                      label: const Text("Galeria"),
+                    )
+                  ],
+                ), 
+              ],
+            ), 
+            const SizedBox(
+                 height: 20,
+               ),
             InputField(
               "Nome",
               Icons.autofps_select_sharp,
@@ -152,10 +184,10 @@ class _UsuarioFormState extends State<UsuarioForm> {
     }
   }
 
-  Future<void> _tirarFoto() async {
+  Future<void> _tirarFoto(ImageSource source) async {
     final ImagePicker _picker = ImagePicker();
     try {
-      final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+      final XFile? photo = await _picker.pickImage(source: source);
 
       photo!.readAsBytes().then((imagem){
 

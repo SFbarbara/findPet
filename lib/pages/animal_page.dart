@@ -41,16 +41,44 @@ class _AnimalPageState extends State<AnimalPage> {
               child: Column(
                 children: [
                   GestureDetector(
-                    onTap: _fotoAnimal,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: CircleAvatar(
                         radius: 80,
-                        backgroundImage: NetworkImage(
-                            "https://static.vecteezy.com/ti/vetor-gratis/p1/2668165-coleira-cachorro-cara-bonito-com-osso-animal-animal-de-estimacao-domestico-cartoon-gr%C3%A1tis-vetor.jpg"),
+                        //backgroundImage: FotoCachorro().getImage(),
                       ),
                     ),
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: Row(
+                          children:[
+                            ElevatedButton.icon(
+                              onPressed: (){
+                                _fotoAnimal(ImageSource.camera);
+                              },
+                              icon: const Icon(Icons.camera),
+                              label: const Text("Camera"),
+                            )
+                          ],
+                        ),
+                      ),
+                      Row(
+                        children:[
+                          ElevatedButton.icon(
+                            onPressed: (){
+                              _fotoAnimal(ImageSource.gallery);
+                            },
+                            icon: const Icon(Icons.image_search_outlined),
+                            label: const Text("Galeria"),
+                          )
+                        ],
+                      ), 
+                    ],
+                  ), 
                   const SizedBox(
                     height: 10,
                   ),
@@ -143,20 +171,20 @@ class _AnimalPageState extends State<AnimalPage> {
                       Expanded(
                         child: ElevatedButton.icon(
                             onPressed: () {
-                              /*if (_key.currentState!.validate()) {
+                              if (_key.currentState!.validate()) {
                                 _key.currentState!.save();
                                 salvar(animal);
-                              }*/
+                              }
                             },
                             icon: const Icon(Icons.save),
                             label: const Text("Salvar")),
                       ),
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Text("Inclua 10 fotos do seu cachorro"),
+                  const Text("Inclua 10 fotos do seu cachorro"),
                   Wrap(
                     children:
                         animal.fotos.map((e) => FotoAnimalTile(e)).toList(),
@@ -170,10 +198,10 @@ class _AnimalPageState extends State<AnimalPage> {
     );
   }
 
-  Future<void> _fotoAnimal() async {
+  Future<void> _fotoAnimal(ImageSource source) async {
     final ImagePicker _picker = ImagePicker();
     try {
-      final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+      final XFile? photo = await _picker.pickImage(source: source);
 
       photo!.readAsBytes().then((imagem) {
         setState(() {
@@ -187,6 +215,10 @@ class _AnimalPageState extends State<AnimalPage> {
   }
 }
 
-/*salvar(AnimalModel animal) async {
+salvar(AnimalModel animal) async {
+  try {
+    if(animal.id == null){
 
-}*/
+    }
+  } catch(e) {}
+}
