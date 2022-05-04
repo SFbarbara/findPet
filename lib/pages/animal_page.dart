@@ -5,6 +5,7 @@ import 'package:findpet/models/animal_model.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../text_input_formater.dart';
 import 'foto_animal_tile.dart';
 
 class AnimalPage extends StatefulWidget {
@@ -115,6 +116,9 @@ class _AnimalPageState extends State<AnimalPage> {
                     "Data de nascimento",
                     Icons.date_range_rounded,
                     false,
+                    inputType: TextInputType.datetime,
+                    inputFormatters: [DateTextFormatter()],
+                    maxLength: 10,
                     initialValue: animal.nasc,
                     validator: (value) {
                       if (value!.isEmpty) {
