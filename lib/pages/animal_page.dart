@@ -40,8 +40,8 @@ class _AnimalPageState extends State<AnimalPage> {
               child: Column(
                 children: [
                   GestureDetector(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
                       child: CircleAvatar(
                         radius: 80,
                         //backgroundImage: FotoCachorro().getImage(),
@@ -54,9 +54,9 @@ class _AnimalPageState extends State<AnimalPage> {
                       Padding(
                         padding: const EdgeInsets.only(right: 8.0),
                         child: Row(
-                          children:[
+                          children: [
                             ElevatedButton.icon(
-                              onPressed: (){
+                              onPressed: () {
                                 _fotoAnimal(ImageSource.camera);
                               },
                               icon: const Icon(Icons.camera),
@@ -66,18 +66,18 @@ class _AnimalPageState extends State<AnimalPage> {
                         ),
                       ),
                       Row(
-                        children:[
+                        children: [
                           ElevatedButton.icon(
-                            onPressed: (){
+                            onPressed: () {
                               _fotoAnimal(ImageSource.gallery);
                             },
                             icon: const Icon(Icons.image_search_outlined),
                             label: const Text("Galeria"),
                           )
                         ],
-                      ), 
+                      ),
                     ],
-                  ), 
+                  ),
                   const SizedBox(
                     height: 10,
                   ),
@@ -197,9 +197,7 @@ class _AnimalPageState extends State<AnimalPage> {
     );
   }
 
-  void _salvarAnimal(AnimalModel animal) {
-    
-  }
+  void _salvarAnimal(AnimalModel animal) {}
 
   Future<void> _fotoAnimal(ImageSource source) async {
     final ImagePicker _picker = ImagePicker();
@@ -217,4 +215,3 @@ class _AnimalPageState extends State<AnimalPage> {
     }
   }
 }
-
