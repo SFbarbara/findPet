@@ -6,6 +6,7 @@ import 'package:findpet/text_input_formater.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../text_input_formater.dart';
 import 'foto_animal_tile.dart';
 
 class AnimalPage extends StatefulWidget {
@@ -41,15 +42,43 @@ class _AnimalPageState extends State<AnimalPage> {
               child: Column(
                 children: [
                   GestureDetector(
-                    onTap: _fotoAnimal,
                     child: const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: CircleAvatar(
                         radius: 80,
-                        backgroundImage: NetworkImage(
-                            "https://static.vecteezy.com/ti/vetor-gratis/p1/2668165-coleira-cachorro-cara-bonito-com-osso-animal-animal-de-estimacao-domestico-cartoon-gr%C3%A1tis-vetor.jpg"),
+                        //backgroundImage: FotoCachorro().getImage(),
                       ),
                     ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 8.0),
+                        child: Row(
+                          children: [
+                            ElevatedButton.icon(
+                              onPressed: () {
+                                _fotoAnimal(ImageSource.camera);
+                              },
+                              icon: const Icon(Icons.camera),
+                              label: const Text("Camera"),
+                            )
+                          ],
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          ElevatedButton.icon(
+                            onPressed: () {
+                              _fotoAnimal(ImageSource.gallery);
+                            },
+                            icon: const Icon(Icons.image_search_outlined),
+                            label: const Text("Galeria"),
+                          )
+                        ],
+                      ),
+                    ],
                   ),
                   const SizedBox(
                     height: 10,
@@ -150,7 +179,7 @@ class _AnimalPageState extends State<AnimalPage> {
                             onPressed: () {
                               if (_key.currentState!.validate()) {
                                 _key.currentState!.save();
-                                // salvar(animal);
+                                _salvarAnimal(animal);
                               }
                             },
                             icon: const Icon(Icons.save),
@@ -165,7 +194,7 @@ class _AnimalPageState extends State<AnimalPage> {
                   Wrap(
                     children:
                         animal.fotos.map((e) => FotoAnimalTile(e)).toList(),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -175,10 +204,12 @@ class _AnimalPageState extends State<AnimalPage> {
     );
   }
 
-  Future<void> _fotoAnimal() async {
+  void _salvarAnimal(AnimalModel animal) {}
+
+  Future<void> _fotoAnimal(ImageSource source) async {
     final ImagePicker _picker = ImagePicker();
     try {
-      final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+      final XFile? photo = await _picker.pickImage(source: source);
 
       photo!.readAsBytes().then((imagem) {
         setState(() {
@@ -191,8 +222,3 @@ class _AnimalPageState extends State<AnimalPage> {
     }
   }
 }
-
-
-/*salvar(AnimalModel animal) async {
-
-}*/
