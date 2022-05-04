@@ -43,7 +43,7 @@ class FotoAnimalTile extends StatelessWidget {
       });
     } catch (e) {
       // ignore: avoid_print
-      print("Erro selecionando a foto do Cachorro: $e");
+      print("Erro ao selecionar a foto do Animal: $e");
     }
   }
 

@@ -218,7 +218,7 @@ class _AnimalPageState extends State<AnimalPage> {
       });
     } catch (e) {
       // ignore: avoid_print
-      print("Erro selecionando a foto do Animal: $e");
+      print("Erro ao selecionar a foto do Animal: $e");
     }
   }
 }
