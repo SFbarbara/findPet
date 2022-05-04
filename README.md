@@ -15,3 +15,9 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 "# findPet" 
+
+                        ALTERAÇÕES FEITAS ATÉ O MOMENTO
+                        
+                - ADIÇÃO DE DOIS BOTÕES NA ÁREA DE CADASTRO DE ANIMAIS
+                - FORMATAÇÃO DE DATA NO ÁREA DATA DE NASCIMENTO (ANTES ERA POSSIVEL COLOCAR VARIOS DIGITOS,
+                AGORA ESTÁ LIMITADO A DD/MM/AAAA, PADRÃO BRASILEIRO)
