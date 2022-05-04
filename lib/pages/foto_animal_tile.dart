@@ -34,7 +34,7 @@ class FotoAnimalTile extends StatelessWidget {
   Future<void> _fotoAnimal() async {
     final ImagePicker _picker = ImagePicker();
     try {
-      final XFile? photo = await _picker.pickImage(source: ImageSource.camera);
+      final XFile? photo = await _picker.pickImage(source: ImageSource.gallery);
 
       photo!.readAsBytes().then((imagem) {
         setState(() {
