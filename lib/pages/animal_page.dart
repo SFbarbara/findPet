@@ -172,7 +172,7 @@ class _AnimalPageState extends State<AnimalPage> {
                             onPressed: () {
                               if (_key.currentState!.validate()) {
                                 _key.currentState!.save();
-                                _salvar(animal);
+                                _salvarAnimal(animal);
                               }
                             },
                             icon: const Icon(Icons.save),
@@ -197,7 +197,9 @@ class _AnimalPageState extends State<AnimalPage> {
     );
   }
 
-  void _salvar(AnimalModel animal) {}
+  void _salvarAnimal(AnimalModel animal) {
+    
+  }
 
   Future<void> _fotoAnimal(ImageSource source) async {
     final ImagePicker _picker = ImagePicker();
