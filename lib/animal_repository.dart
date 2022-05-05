@@ -1,4 +1,4 @@
-/*import 'dart:convert';
+import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:findpet/models/animal_model.dart';
@@ -8,11 +8,14 @@ class AnimalRepository{
   Future<void> salvar(AnimalModel animal) async{
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     var col = firestore.collection("animais");
-    var doc = await col.doc(animal.id).get();
-    if(doc.exists){
-      await col.doc(animal.id).update(animal.toJson());
+    if (animal.id==null) {
+
+       DocumentReference<Map<String, dynamic>> doc = await col.add(animal.toJson());
+       animal.id = doc.id;
+       await doc.update({'id':doc.id}); 
     } else {
-      await col.doc(animal.id).set(animal.toJson());
+        var doc = await col.doc(animal.id).get();
+        await col.doc(animal.id).update(animal.toJson());
     }
 
     if(animal.foto!=null){
@@ -23,4 +26,4 @@ class AnimalRepository{
       await col.doc(animal.id).update({'foto':url});
     }
   }
-}*/
+}

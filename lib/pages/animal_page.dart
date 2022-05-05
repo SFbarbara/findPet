@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:findpet/animal_repository.dart';
+import 'package:findpet/foto_cachorro.dart';
 import 'package:findpet/input_field.dart';
 import 'package:findpet/models/animal_model.dart';
 import 'package:findpet/text_input_formater.dart';
@@ -42,11 +44,11 @@ class _AnimalPageState extends State<AnimalPage> {
               child: Column(
                 children: [
                   GestureDetector(
-                    child: const Padding(
+                    child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: CircleAvatar(
                         radius: 80,
-                        //backgroundImage: FotoCachorro().getImage(),
+                        backgroundImage: FotoCachorro(animal.foto, imagemAlternativa: "imagens/cadastro_animal.png").getImage(),
                       ),
                     ),
                   ),
@@ -204,7 +206,9 @@ class _AnimalPageState extends State<AnimalPage> {
     );
   }
 
-  void _salvarAnimal(AnimalModel animal) {}
+  Future<void> _salvarAnimal(AnimalModel animal) async {
+    await AnimalRepository().salvar(animal);
+  }
 
   Future<void> _fotoAnimal(ImageSource source) async {
     final ImagePicker _picker = ImagePicker();
