@@ -34,7 +34,9 @@ class _AnimalPageState extends State<AnimalPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Cadastre seu cachorro")),
+      appBar: AppBar(
+        title: const Text("Cadastre seu cachorro"),
+      ),
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
