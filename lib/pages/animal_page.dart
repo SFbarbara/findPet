@@ -7,9 +7,10 @@ import 'package:findpet/models/animal_model.dart';
 import 'package:findpet/text_input_formater.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../text_input_formater.dart';
 import 'foto_animal_tile.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_file.dart';
 
 class AnimalPage extends StatefulWidget {
   final AnimalModel? animal;
@@ -26,6 +27,7 @@ class _AnimalPageState extends State<AnimalPage> {
   @override
   void initState() {
     super.initState();
+   
     if (widget.animal != null) {
       animal = widget.animal!;
     }
@@ -126,10 +128,12 @@ class _AnimalPageState extends State<AnimalPage> {
                     maxLength: 10,
                     initialValue: animal.nasc,
                     validator: (value) {
+
                       try {
-                        DateTime.parse(value!);
+                        DateTime.parse(formatarDataUS(value!));
                         return null;
                       } catch (e) {
+                        print(e);
                         return "Data Inválida";
                       }
                     },
@@ -226,5 +230,12 @@ class _AnimalPageState extends State<AnimalPage> {
       // ignore: avoid_print
       print("Erro ao selecionar a foto do Animal: $e");
     }
+  }
+
+  String formatarDataUS(String value) {
+    var adata = value.split("/");
+    String nstr = "${adata[2]}-${adata[1]}-${adata[0]}";
+    print(nstr);
+    return nstr;
   }
 }

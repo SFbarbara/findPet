@@ -6,9 +6,10 @@ import 'package:findpet/pages/usuario_page.dart';
 import 'package:findpet/usuario.repository.dart';
 import 'package:flutter/material.dart';
 
+import '../usuario_store.dart';
+
 class MainPage extends StatelessWidget {
-  final UsuarioModel? usuario;
-  const MainPage(this.usuario, {Key? key}) : super(key: key);
+  const MainPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,12 +47,12 @@ class MainPage extends StatelessWidget {
                           CircleAvatar(
                               radius: 55.0,
                               backgroundImage:
-                                  FotoUsuario(usuario!).getImage()),
+                                  FotoUsuario(usuario.value!).getImage()),
                           const SizedBox(
                             height: 5,
                           ),
                           Text(
-                            usuario?.nome ?? "",
+                            usuario.value?.nome ?? "",
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 15,
@@ -83,10 +84,11 @@ class MainPage extends StatelessWidget {
                                 fontSize: 18,
                               ),
                             ),
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
+                            onPressed: () async {
+                              usuario.value = await Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) =>
-                                      UsuarioPage(usuario: usuario)));
+                                      UsuarioPage(usuario: usuario.value)));
+                                Navigator.of(context).pop();
                             },
                           ),
                         ],

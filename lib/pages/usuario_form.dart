@@ -174,7 +174,7 @@ class _UsuarioFormState extends State<UsuarioForm> {
         await FirebaseAuth.instance.currentUser!.updatePassword(usuario.senha!);
       }
       await UsuarioRepository().salvar(usuario);
-      Navigator.of(context).pop();
+      Navigator.of(context).pop(usuario);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         ScaffoldMessenger.of(context).showSnackBar(

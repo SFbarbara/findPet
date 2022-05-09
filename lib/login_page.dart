@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:findpet/models/usuario_model.dart';
 import 'package:findpet/pages/login_widget.dart';
 import 'package:findpet/pages/main_page.dart';
+import 'package:findpet/usuario_store.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  UsuarioModel? usuario;
+  
 
   autenticacao() {
     FirebaseAuth.instance.authStateChanges().listen((User? user) async {
@@ -22,7 +23,7 @@ class _LoginPageState extends State<LoginPage> {
         // ignore: avoid_print
         print('Usuário fez logout!');
         setState(() {
-          usuario = null;
+          usuario.value = null;
         });
       } else {
         // ignore: avoid_print
@@ -34,7 +35,7 @@ class _LoginPageState extends State<LoginPage> {
         if (doc.exists) {
           Map<String, dynamic>? fbUser = doc.data();
           setState(() {
-              usuario = UsuarioModel(
+              usuario.value = UsuarioModel(
                   id: user.uid,
                   nome: fbUser!['nome'],
                   email: user.email,
@@ -42,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
           });
         } else {
                     setState(() {
-              usuario = UsuarioModel(
+              usuario.value = UsuarioModel(
                   id: user.uid,
                   nome: "",
                   email: user.email,
@@ -62,6 +63,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return usuario == null ? const LoginWidget() : MainPage(usuario);
+    return usuario.value == null ? const LoginWidget() : MainPage();
   }
 }
