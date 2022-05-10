@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:findpet/models/animal_model.dart';
 import 'package:image_picker/image_picker.dart';
