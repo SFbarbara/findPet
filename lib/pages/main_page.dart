@@ -1,4 +1,5 @@
 import 'package:findpet/foto_usuario.dart';
+// ignore: unused_import
 import 'package:findpet/models/usuario_model.dart';
 import 'package:findpet/pages/animal_page.dart';
 import 'package:findpet/pages/inferir/inferir_page.dart';

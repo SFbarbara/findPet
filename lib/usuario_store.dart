@@ -1,3 +1,4 @@
+// ignore: library_names
 library UsuarioStore;
 
 import 'package:findpet/models/usuario_model.dart';

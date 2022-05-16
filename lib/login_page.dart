@@ -6,7 +6,6 @@ import 'package:findpet/usuario_store.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -15,8 +14,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  
-
   autenticacao() {
     FirebaseAuth.instance.authStateChanges().listen((User? user) async {
       if (user == null) {
@@ -35,21 +32,17 @@ class _LoginPageState extends State<LoginPage> {
         if (doc.exists) {
           Map<String, dynamic>? fbUser = doc.data();
           setState(() {
-              usuario.value = UsuarioModel(
-                  id: user.uid,
-                  nome: fbUser!['nome'],
-                  email: user.email,
-                  foto: fbUser['foto']);
+            usuario.value = UsuarioModel(
+                id: user.uid,
+                nome: fbUser!['nome'],
+                email: user.email,
+                foto: fbUser['foto']);
           });
         } else {
-                    setState(() {
-              usuario.value = UsuarioModel(
-                  id: user.uid,
-                  nome: "",
-                  email: user.email,
-                  foto: null);
+          setState(() {
+            usuario.value = UsuarioModel(
+                id: user.uid, nome: "", email: user.email, foto: null);
           });
-
         }
       }
     });
@@ -63,6 +56,6 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return usuario.value == null ? const LoginWidget() : MainPage();
+    return usuario.value == null ? const LoginWidget() : const MainPage();
   }
 }
