@@ -9,7 +9,9 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import '../text_input_formater.dart';
 import 'foto_animal_tile.dart';
+// ignore: unused_import
 import 'package:intl/intl.dart';
+// ignore: unused_import
 import 'package:intl/date_symbol_data_file.dart';
 
 class AnimalPage extends StatefulWidget {
@@ -27,7 +29,7 @@ class _AnimalPageState extends State<AnimalPage> {
   @override
   void initState() {
     super.initState();
-   
+
     if (widget.animal != null) {
       animal = widget.animal!;
     }
@@ -49,10 +51,13 @@ class _AnimalPageState extends State<AnimalPage> {
                 children: [
                   GestureDetector(
                     child: Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: CircleAvatar(
                         radius: 80,
-                        backgroundImage: FotoCachorro(animal.foto, imagemAlternativa: "imagens/cadastro_animal.png").getImage(),
+                        backgroundImage: FotoCachorro(animal.foto,
+                                imagemAlternativa:
+                                    "imagens/cadastro_animal.png")
+                            .getImage(),
                       ),
                     ),
                   ),
@@ -128,11 +133,11 @@ class _AnimalPageState extends State<AnimalPage> {
                     maxLength: 10,
                     initialValue: animal.nasc,
                     validator: (value) {
-
                       try {
                         DateTime.parse(formatarDataUS(value!));
                         return null;
                       } catch (e) {
+                        // ignore: avoid_print
                         print(e);
                         return "Data Inválida";
                       }
@@ -235,6 +240,7 @@ class _AnimalPageState extends State<AnimalPage> {
   String formatarDataUS(String value) {
     var adata = value.split("/");
     String nstr = "${adata[2]}-${adata[1]}-${adata[0]}";
+    // ignore: avoid_print
     print(nstr);
     return nstr;
   }

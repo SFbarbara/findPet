@@ -1,5 +1,7 @@
 import 'package:findpet/foto_usuario.dart';
+
 import 'package:findpet/models/animal_model.dart';
+
 import 'package:findpet/models/usuario_model.dart';
 import 'package:findpet/pages/animal_page.dart';
 import 'package:findpet/pages/inferir/inferir_page.dart';
