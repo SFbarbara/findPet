@@ -9,23 +9,26 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-class UsuarioForm extends StatefulWidget {
-  final UsuarioModel? usuario;
-  const UsuarioForm({this.usuario, Key? key}) : super(key: key);
+import '../usuario_store.dart';
 
+class UsuarioForm extends StatefulWidget {
+  final UsuarioModel? pusuario;
+  const UsuarioForm({this.pusuario, Key? key}) : super(key: key);
+  
   @override
   State<UsuarioForm> createState() => _UsuarioFormState();
 }
 
 class _UsuarioFormState extends State<UsuarioForm> {
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
-  UsuarioModel usuario = UsuarioModel();
+  UsuarioModel pusuario = UsuarioModel();
+  bool salvando = false; 
 
   @override
   void initState() {
     super.initState();
-    if (widget.usuario != null) {
-      usuario = widget.usuario!;
+    if (widget.pusuario != null) {
+      pusuario = widget.pusuario!;
     }
   }
 
@@ -44,7 +47,7 @@ class _UsuarioFormState extends State<UsuarioForm> {
                 padding: const EdgeInsets.all(8.0),
                 child: CircleAvatar(
                   radius: 80,
-                  backgroundImage: FotoUsuario(usuario).getImage(),
+                  backgroundImage: FotoUsuario(pusuario).getImage(),
                 ),
               ),
             ), 
@@ -85,7 +88,7 @@ class _UsuarioFormState extends State<UsuarioForm> {
               "Nome",
               Icons.autofps_select_sharp,
               false,
-              initialValue: usuario.nome,
+              initialValue: pusuario.nome,
               validator: (value) {
                 if (value!.isEmpty) {
                   return "Campo não pode ficar vazio";
@@ -93,14 +96,14 @@ class _UsuarioFormState extends State<UsuarioForm> {
                 return null;
               },
               onsaved: (value) {
-                usuario.nome = value;
+                pusuario.nome = value;
               },
             ),
             InputField(
               "Email",
               Icons.mail,
               false,
-              initialValue: usuario.email,
+              initialValue: pusuario.email,
               validator: (value) {
                 if (value!.isEmpty || !value.contains('@')) {
                   return "Informe um email válido";
@@ -108,7 +111,7 @@ class _UsuarioFormState extends State<UsuarioForm> {
                 return null;
               },
               onsaved: (value) {
-                usuario.email = value;
+                pusuario.email = value;
               },
             ),
             InputField(
@@ -117,7 +120,7 @@ class _UsuarioFormState extends State<UsuarioForm> {
               true,
               validator: (value) {
                 if ((value!.isEmpty || value.length < 3) &&
-                    (usuario.id == null)) {
+                    (pusuario.id == null)) {
                   return "A senha deve ter ao menos 3 caracteres";
                 } else {
                   senha = value;
@@ -125,7 +128,7 @@ class _UsuarioFormState extends State<UsuarioForm> {
                 return null;
               },
               onsaved: (value) {
-                usuario.senha = senha;
+                pusuario.senha = senha;
               },
             ),
             InputField(
@@ -139,14 +142,34 @@ class _UsuarioFormState extends State<UsuarioForm> {
                 return null;
               },
             ),
+            salvando?Center(child: Column(
+              children:  [
+                 CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.black)),
+                Text("Aguarde! Salvando..."),
+              ],
+            )):
             Row(
               children: [
                 Expanded(
                     child: ElevatedButton.icon(
-                        onPressed: () {
+                        onPressed: () async {
+                            setState(() {
+                              salvando = true;
+                            });
                           if (_key.currentState!.validate()) {
                             _key.currentState!.save();
-                            salvar(usuario);
+                            
+                            try {
+                              await salvar(pusuario);
+                              setState(() {
+                                salvando = false;
+                              });
+                            } catch (e) {
+                              setState(() {
+                                salvando = false;
+                              });
+                            }
+                             
                           }
                         },
                         icon: const Icon(Icons.save),
@@ -162,19 +185,20 @@ class _UsuarioFormState extends State<UsuarioForm> {
   );
 }
 
-  salvar(UsuarioModel usuario) async {
+  salvar(UsuarioModel pusuario) async {
     try {
-      if (usuario.id == null) {
-        //se for usuario novo
+      if (pusuario.id == null) {
+        //se for pusuario novo
         UserCredential userCredential = await FirebaseAuth.instance
             .createUserWithEmailAndPassword(
-                email: usuario.email!, password: usuario.senha!);
-        usuario.id = userCredential.user!.uid;
-      } else if (usuario.senha?.isNotEmpty ?? false) {
-        await FirebaseAuth.instance.currentUser!.updatePassword(usuario.senha!);
+                email: pusuario.email!, password: pusuario.senha!);
+        pusuario.id = userCredential.user!.uid;
+      } else if (pusuario.senha?.isNotEmpty ?? false) {
+        await FirebaseAuth.instance.currentUser!.updatePassword(pusuario.senha!);
       }
-      await UsuarioRepository().salvar(usuario);
-      Navigator.of(context).pop(usuario);
+      await UsuarioRepository().salvar(pusuario);
+      usuario.value = pusuario;
+      Navigator.of(context).pop(pusuario);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -196,12 +220,12 @@ class _UsuarioFormState extends State<UsuarioForm> {
 
       photo!.readAsBytes().then((imagem) {
         setState(() {
-          usuario.foto = base64Encode(imagem);
+          pusuario.foto = base64Encode(imagem);
         });
       });
     } catch (e) {
       // ignore: avoid_print
-      print("Erro selecionando a foto do usuario: $e");
+      print("Erro selecionando a foto do pusuario: $e");
     }
   }
 }

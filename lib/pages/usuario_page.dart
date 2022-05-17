@@ -12,7 +12,7 @@ class UsuarioPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
       ),
-      body: UsuarioForm(usuario:usuario),
+      body: UsuarioForm(pusuario:usuario),
     );
   }
 }

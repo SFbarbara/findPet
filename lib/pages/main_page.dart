@@ -1,4 +1,5 @@
 import 'package:findpet/foto_usuario.dart';
+import 'package:findpet/models/animal_model.dart';
 import 'package:findpet/models/usuario_model.dart';
 import 'package:findpet/pages/animal_page.dart';
 import 'package:findpet/pages/inferir/inferir_page.dart';
@@ -7,6 +8,7 @@ import 'package:findpet/usuario.repository.dart';
 import 'package:flutter/material.dart';
 
 import '../usuario_store.dart';
+import 'my_dog_widget.dart';
 
 class MainPage extends StatelessWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -44,10 +46,16 @@ class MainPage extends StatelessWidget {
                       Column(
                         // ignore: prefer_const_literals_to_create_immutables
                         children: [
-                          CircleAvatar(
+                          
+                              ValueListenableBuilder(
+                                valueListenable:  usuario,
+                                builder: (BuildContext context, dynamic value, Widget? child) {
+                                  return CircleAvatar(
                               radius: 55.0,
-                              backgroundImage:
-                                  FotoUsuario(usuario.value!).getImage()),
+                              backgroundImage: FotoUsuario(usuario.value!).getImage());
+                                },
+                              ),
+                                  
                           const SizedBox(
                             height: 5,
                           ),
@@ -85,7 +93,7 @@ class MainPage extends StatelessWidget {
                               ),
                             ),
                             onPressed: () async {
-                              usuario.value = await Navigator.of(context).push(MaterialPageRoute(
+                               await Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) =>
                                       UsuarioPage(usuario: usuario.value)));
                                 Navigator.of(context).pop();
@@ -140,6 +148,20 @@ class MainPage extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      body: 
+          ListView(
+            scrollDirection: Axis.horizontal,
+            children: [
+              MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
+              MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
+              MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
+              MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
+              MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
+              MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
+              MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
+            
+        ],
       ),
     );
   }

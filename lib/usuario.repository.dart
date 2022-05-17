@@ -16,7 +16,7 @@ class UsuarioRepository {
       await col.doc(usuario.id).set(usuario.toJson());
     }
 
-    if (usuario.foto!=null) {
+    if (usuario.foto!=null && !usuario.foto!.contains("https")) {
       var filename = usuario.id!+".jpg";
       var ref = FirebaseStorage.instance.ref(filename);
       await ref.putData(base64Decode(usuario.foto!));
