@@ -10,7 +10,7 @@ class MyDogWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text("hdfo"),
+        Text("${mydog.nome}"),
         Container(
           child: Column(
             children: [
