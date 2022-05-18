@@ -10,7 +10,7 @@ import 'package:findpet/usuario.repository.dart';
 import 'package:flutter/material.dart';
 
 import '../usuario_store.dart';
-import 'dog_perdido_widget.dart';
+import 'dogs_perdidos_widget.dart';
 import 'my_dog_widget.dart';
 
 class MainPage extends StatelessWidget {
