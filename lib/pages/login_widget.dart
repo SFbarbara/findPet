@@ -187,7 +187,7 @@ class _LoginWidgetState extends State<LoginWidget> {
             const SnackBar(content: Text("Usuário não encontrado!")));
       } else if (e.code == 'Senha Incorreta') {
         ScaffoldMessenger.of(context)
-            .showSnackBar(const SnackBar(content: Text("Senha incorreta!")));
+            .showSnackBar(const SnackBar(content: Text("Login e/ou senha não são válidos!")));
       } else if (e.code == 'too-many-requests') {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
             content: Text("Usuario bloqueado por muitas tentativas")));

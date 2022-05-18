@@ -5,8 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tflite/tflite.dart';
 
+import '../../models/animal_model.dart';
+
 class InferirPage extends StatefulWidget {
-  const InferirPage({Key? key}) : super(key: key);
+  final AnimalModel perdido; 
+  const InferirPage(this.perdido,{Key? key}) : super(key: key);
 
   @override
   State<InferirPage> createState() => _InferirPageState();
@@ -69,117 +72,130 @@ class _InferirPageState extends State<InferirPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
-        title: const Text(
+        /*title: const Text(
           "Verificar",
           style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w200,
               fontSize: 20,
               letterSpacing: 0.8),
-        ),
+        ),*/
       ),
-      body: Container(
-        color: Colors.cyan[800],
-        padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 50),
-        child: Container(
-          alignment: Alignment.center,
-          padding: const EdgeInsets.all(30),
-          decoration: BoxDecoration(
-            color: Colors.black54,
-            borderRadius: BorderRadius.circular(30),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Verificando se é ${widget.perdido.nome}",
+            style: const TextStyle(
+              fontSize: 20, 
+              fontWeight: FontWeight.w500,
+            ),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // ignore: avoid_unnecessary_containers
-              Container(
-                child: Center(
-                  child: _loading == true
-                      ? null
-                      // ignore: avoid_unnecessary_containers
-                      : Container(
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                height: 230,
-                                width: 230,
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(30),
-                                  child: Image.file(
-                                    _image,
-                                    fit: BoxFit.fill,
+          Container(
+            color: Colors.cyan[800],
+            padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 50),
+            child: Container(
+              alignment: Alignment.center,
+              padding: const EdgeInsets.all(30),
+              decoration: BoxDecoration(
+                color: Colors.black54,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // ignore: avoid_unnecessary_containers
+                  Container(
+                    child: Center(
+                      child: _loading == true
+                          ? null
+                          // ignore: avoid_unnecessary_containers
+                          : Container(
+                              child: Column(
+                                children: [
+                                  
+                                  SizedBox(
+                                    height: 230,
+                                    width: 230,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(30),
+                                      child: Image.file(
+                                        _image,
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  const Divider(
+                                    height: 20,
+                                    thickness: 1,
+                                  ),
+                                  _output != null
+                                      ? Text(
+                                          'Essa foto: ${_output[0]['label']}!',
+                                          style: const TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w400),
+                                        )
+                                      : Container(),
+                                  const Divider(
+                                    height: 20,
+                                    thickness: 1,
+                                  ),
+                                ],
                               ),
-                              const Divider(
-                                height: 20,
-                                thickness: 1,
-                              ),
-                              _output != null
-                                  ? Text(
-                                      'Essa foto: ${_output[0]['label']}!',
-                                      style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w400),
-                                    )
-                                  : Container(),
-                              const Divider(
-                                height: 20,
-                                thickness: 1,
-                              ),
-                            ],
+                            ),
+                    ),
+                  ),
+                  // ignore: avoid_unnecessary_containers
+                  Container(
+                    child: Column(
+                      children: [
+                        GestureDetector(
+                          onTap: pickImage,
+                          child: Container(
+                            width: MediaQuery.of(context).size.width - 200,
+                            alignment: Alignment.center,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 24, vertical: 17),
+                            decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 0, 0, 0),
+                                borderRadius: BorderRadius.circular(15)),
+                            child: const Text(
+                              'Tire uma foto',
+                              style: TextStyle(color: Colors.white, fontSize: 16),
+                            ),
                           ),
                         ),
-                ),
-              ),
-              // ignore: avoid_unnecessary_containers
-              Container(
-                child: Column(
-                  children: [
-                    GestureDetector(
-                      onTap: pickImage,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width - 200,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 24, vertical: 17),
-                        decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 0, 0, 0),
-                            borderRadius: BorderRadius.circular(15)),
-                        child: const Text(
-                          'Tire uma foto',
-                          style: TextStyle(color: Colors.white, fontSize: 16),
+                        const SizedBox(
+                          height: 25,
                         ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    GestureDetector(
-                      onTap: pickGalleryImage,
-                      child: Container(
-                        width: MediaQuery.of(context).size.width - 200,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 24, vertical: 17),
-                        decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 0, 0, 0),
-                            borderRadius: BorderRadius.circular(15)),
-                        child: const Text(
-                          'Selecione da Galeria',
-                          // ignore: unnecessary_const
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 16),
+                        GestureDetector(
+                          onTap: pickGalleryImage,
+                          child: Container(
+                            width: MediaQuery.of(context).size.width - 200,
+                            alignment: Alignment.center,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 24, vertical: 17),
+                            decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 0, 0, 0),
+                                borderRadius: BorderRadius.circular(15)),
+                            child: const Text(
+                              'Selecione da Galeria',
+                              // ignore: unnecessary_const
+                              style: const TextStyle(
+                                  color: Colors.white, fontSize: 16),
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

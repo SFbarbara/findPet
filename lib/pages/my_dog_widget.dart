@@ -8,13 +8,27 @@ class MyDogWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(5),
-      color: Colors.amber,
-      child: SizedBox(
-        height: 100,
-        width: 100,
-      )
+    return Column(
+      children: [
+        Text("hdfo"),
+        Container(
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.all(5),
+                child: Stack(
+                  children: [
+                    CircleAvatar(
+                      radius: 40,
+                      backgroundImage: NetworkImage("https://static1.patasdacasa.com.br/articles/8/10/38/@/4864-o-cachorro-inteligente-mostra-essa-carac-articles_media_mobile-1.jpg"),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

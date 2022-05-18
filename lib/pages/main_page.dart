@@ -10,6 +10,7 @@ import 'package:findpet/usuario.repository.dart';
 import 'package:flutter/material.dart';
 
 import '../usuario_store.dart';
+import 'dog_perdido_widget.dart';
 import 'my_dog_widget.dart';
 
 class MainPage extends StatelessWidget {
@@ -21,13 +22,7 @@ class MainPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Página inicial"),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => const InferirPage()));
-        },
-        child: const Icon(Icons.add_a_photo_outlined, color: Colors.white),
-      ),
+      
       drawer: Drawer(
         backgroundColor: Colors.cyan[800],
         elevation: 5,
@@ -152,19 +147,61 @@ class MainPage extends StatelessWidget {
         ),
       ),
       body: 
-          ListView(
-            scrollDirection: Axis.horizontal,
+          Column(
             children: [
-              MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
-              MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
-              MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
-              MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
-              MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
-              MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
-              MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
-            
-        ],
-      ),
+              SizedBox(
+                height: 50,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Meus dogs",
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w600,
+                    ),),
+                    ],
+                ),
+              ),
+              SizedBox(
+                height: 150,
+                child: ListView(
+                  
+                  scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.all(8.0),
+                  children: [
+                    MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
+                    MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
+                    MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
+                    MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
+                    MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
+                    MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
+                    MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
+                      ],
+                    ),
+              ),
+              SizedBox(
+                height: 50,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Dogs perdidos",
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.w600,
+                    ),),
+                    ],
+                ),
+              ),
+              Expanded(
+                child: ListView(
+                  children:[
+                  DogsPerdidosWidget(AnimalModel(id:"0", nome:"Mel",)),
+                  DogsPerdidosWidget(AnimalModel(id:"0", nome:"Mel",)),
+                  DogsPerdidosWidget(AnimalModel(id:"0", nome:"Mel",)),
+                  ]),
+              ),
+            ],
+          ),
     );
   }
 
