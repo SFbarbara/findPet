@@ -20,7 +20,7 @@ class DogsPerdidosWidget extends StatelessWidget {
                       child: Column(
                         children: [
                           Text("${perdido.nome}"),
-                          Expanded(
+                          const Expanded(
                             child: Image(
                               fit: BoxFit.cover,
                               image: NetworkImage("https://static1.patasdacasa.com.br/articles/8/10/38/@/4864-o-cachorro-inteligente-mostra-essa-carac-articles_media_mobile-1.jpg"),),
@@ -38,7 +38,7 @@ class DogsPerdidosWidget extends StatelessWidget {
                           MaterialPageRoute(builder: (context) => InferirPage(perdido))
                         );
                       }, 
-                      child: Icon(Icons.camera_alt)
+                      child: const Icon(Icons.camera_alt)
                     ),
                   ),
                 ]

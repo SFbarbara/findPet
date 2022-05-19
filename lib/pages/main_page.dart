@@ -2,8 +2,10 @@ import 'package:findpet/foto_usuario.dart';
 
 import 'package:findpet/models/animal_model.dart';
 
+// ignore: unused_import
 import 'package:findpet/models/usuario_model.dart';
 import 'package:findpet/pages/animal_page.dart';
+// ignore: unused_import
 import 'package:findpet/pages/inferir/inferir_page.dart';
 import 'package:findpet/pages/usuario_page.dart';
 import 'package:findpet/usuario.repository.dart';
@@ -153,7 +155,7 @@ class MainPage extends StatelessWidget {
                 height: 50,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const[
                     Text(
                       "Meus cachorros cadastrados",
                       style: TextStyle(
@@ -169,7 +171,7 @@ class MainPage extends StatelessWidget {
                 child: ListView(
                   
                   scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   children: [
                     MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
                     MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
@@ -185,7 +187,7 @@ class MainPage extends StatelessWidget {
                 height: 50,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
+                  children: const[
                     Text(
                       "Cachorros perdidos",
                       style: TextStyle(
