@@ -1,3 +1,4 @@
+// ignore: unnecessary_import
 import 'dart:ui';
 
 import 'package:findpet/foto_usuario.dart';
