@@ -16,7 +16,7 @@ class MyDogWidget extends StatelessWidget {
       )),
       child: Column(
         children: [
-          Text("${mydog.nome}"),
+          Text("${mydog.nome??''}"),
           // ignore: avoid_unnecessary_containers
           Container(
             child: Column(
@@ -26,6 +26,7 @@ class MyDogWidget extends StatelessWidget {
                   child: Stack(
                     children: [
                       CircleAvatar(
+                        
                         radius: 40,
                         backgroundImage: FotoCachorro(mydog.foto).getImage(),
                       ),

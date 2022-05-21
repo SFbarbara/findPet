@@ -1,6 +1,8 @@
 // ignore: unnecessary_import
 import 'dart:ui';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:findpet/animal_repository.dart';
 import 'package:findpet/foto_usuario.dart';
 
 import 'package:findpet/models/animal_model.dart';
@@ -170,39 +172,23 @@ class MainPage extends StatelessWidget {
           ),
           SizedBox(
             height: 150,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.all(8.0),
-              children: [
-                MyDogWidget(AnimalModel(
-                  id: "0",
-                  nome: "Mael",
-                )),
-                MyDogWidget(AnimalModel(
-                  id: "0",
-                  nome: "Mael",
-                )),
-                MyDogWidget(AnimalModel(
-                  id: "0",
-                  nome: "Mael",
-                )),
-                MyDogWidget(AnimalModel(
-                  id: "0",
-                  nome: "Mael",
-                )),
-                MyDogWidget(AnimalModel(
-                  id: "0",
-                  nome: "Mael",
-                )),
-                MyDogWidget(AnimalModel(
-                  id: "0",
-                  nome: "Mael",
-                )),
-                MyDogWidget(AnimalModel(
-                  id: "0",
-                  nome: "Mael",
-                )),
-              ],
+            child: FutureBuilder<List<AnimalModel>>(
+              future: AnimalRepository().listar(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.red)),);
+                } else {
+                  return ListView.builder(
+                    itemCount: snapshot.data?.length ?? 0,
+                    scrollDirection: Axis.horizontal,
+                    padding: const EdgeInsets.all(8.0),
+                    itemBuilder: (context, index) {
+                      List<AnimalModel> data = snapshot.data!;
+                      return MyDogWidget(data[index],key: Key("${data[index].id}"),);
+                    },
+                  );
+                }
+              },
             ),
           ),
           SizedBox(
@@ -219,22 +205,6 @@ class MainPage extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-          Expanded(
-            child: ListView(children: [
-              DogsPerdidosWidget(AnimalModel(
-                id: "0",
-                nome: "Mel",
-              )),
-              DogsPerdidosWidget(AnimalModel(
-                id: "0",
-                nome: "Mel",
-              )),
-              DogsPerdidosWidget(AnimalModel(
-                id: "0",
-                nome: "Mel",
-              )),
-            ]),
           ),
         ],
       ),

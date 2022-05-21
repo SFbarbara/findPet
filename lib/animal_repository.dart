@@ -27,4 +27,13 @@ class AnimalRepository {
       await col.doc(animal.id).update({'foto': url});
     }
   }
+
+  Future<List<AnimalModel>> listar() async {
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+      var col = firestore.collection("animais");
+      QuerySnapshot<Map<String, dynamic>>   snapshot = await col.get();
+      
+      return snapshot.docs.map((e) => AnimalModel.fromMap(e.data())).toList();
+
+  }
 }

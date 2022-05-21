@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class AnimalModel {
   String? id;
   String? nome;
@@ -28,4 +30,12 @@ class AnimalModel {
       "descrição: ": descricao
     };
   }
-}
+
+  factory AnimalModel.fromMap(Map<String, dynamic> snapshot) {
+
+    return  AnimalModel(id: snapshot['id'], descricao: snapshot['descricao'], nome: snapshot['nome'], raca: snapshot['raca'], nasc: snapshot['nasc'], foto: snapshot['foto'], genero: snapshot['genero']); 
+
+  }
+  
+  
+  }
