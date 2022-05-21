@@ -1,9 +1,14 @@
+// ignore: unnecessary_import
+import 'dart:ui';
+
 import 'package:findpet/foto_usuario.dart';
 
 import 'package:findpet/models/animal_model.dart';
 
+// ignore: unused_import
 import 'package:findpet/models/usuario_model.dart';
 import 'package:findpet/pages/animal_page.dart';
+// ignore: unused_import
 import 'package:findpet/pages/inferir/inferir_page.dart';
 import 'package:findpet/pages/usuario_page.dart';
 import 'package:findpet/usuario.repository.dart';
@@ -22,7 +27,6 @@ class MainPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Página inicial"),
       ),
-      
       drawer: Drawer(
         backgroundColor: Colors.cyan[800],
         elevation: 5,
@@ -43,16 +47,16 @@ class MainPage extends StatelessWidget {
                       Column(
                         // ignore: prefer_const_literals_to_create_immutables
                         children: [
-                          
-                              ValueListenableBuilder(
-                                valueListenable:  usuario,
-                                builder: (BuildContext context, dynamic value, Widget? child) {
-                                  return CircleAvatar(
-                              radius: 55.0,
-                              backgroundImage: FotoUsuario(usuario.value!).getImage());
-                                },
-                              ),
-                                  
+                          ValueListenableBuilder(
+                            valueListenable: usuario,
+                            builder: (BuildContext context, dynamic value,
+                                Widget? child) {
+                              return CircleAvatar(
+                                  radius: 55.0,
+                                  backgroundImage:
+                                      FotoUsuario(usuario.value!).getImage());
+                            },
+                          ),
                           const SizedBox(
                             height: 5,
                           ),
@@ -90,10 +94,11 @@ class MainPage extends StatelessWidget {
                               ),
                             ),
                             onPressed: () async {
-                               await Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) =>
-                                      UsuarioPage(usuario: usuario.value)));
-                                Navigator.of(context).pop();
+                              await Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          UsuarioPage(usuario: usuario.value)));
+                              Navigator.of(context).pop();
                             },
                           ),
                         ],
@@ -105,7 +110,7 @@ class MainPage extends StatelessWidget {
                         children: [
                           TextButton.icon(
                             icon: const Icon(Icons.add_to_photos_rounded,
-                                color: Colors.white),
+                                color: Color(0xFFFFFFFF)),
                             label: const Text(
                               "Cadastro do animal",
                               style: TextStyle(
@@ -146,66 +151,93 @@ class MainPage extends StatelessWidget {
           ),
         ),
       ),
-      body: 
-          Column(
-            children: [
-              SizedBox(
-                height: 50,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Meus cachorros cadastrados",
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
+      body: Column(
+        children: [
+          SizedBox(
+            height: 30,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  "Meus cachorros cadastrados",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 150,
-                child: ListView(
-                  
-                  scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.all(8.0),
-                  children: [
-                    MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
-                    MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
-                    MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
-                    MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
-                    MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
-                    MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
-                    MyDogWidget(AnimalModel(id: "0", nome: "Mael",)),
-                      ],
-                    ),
-              ),
-              SizedBox(
-                height: 50,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Cachorros perdidos",
-                      style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: ListView(
-                  children:[
-                  DogsPerdidosWidget(AnimalModel(id:"0", nome:"Mel",)),
-                  DogsPerdidosWidget(AnimalModel(id:"0", nome:"Mel",)),
-                  DogsPerdidosWidget(AnimalModel(id:"0", nome:"Mel",)),
-                  ]),
-              ),
-            ],
+              ],
+            ),
           ),
+          SizedBox(
+            height: 150,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.all(8.0),
+              children: [
+                MyDogWidget(AnimalModel(
+                  id: "0",
+                  nome: "Mael",
+                )),
+                MyDogWidget(AnimalModel(
+                  id: "0",
+                  nome: "Mael",
+                )),
+                MyDogWidget(AnimalModel(
+                  id: "0",
+                  nome: "Mael",
+                )),
+                MyDogWidget(AnimalModel(
+                  id: "0",
+                  nome: "Mael",
+                )),
+                MyDogWidget(AnimalModel(
+                  id: "0",
+                  nome: "Mael",
+                )),
+                MyDogWidget(AnimalModel(
+                  id: "0",
+                  nome: "Mael",
+                )),
+                MyDogWidget(AnimalModel(
+                  id: "0",
+                  nome: "Mael",
+                )),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 50,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text(
+                  "Cachorros perdidos",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: ListView(children: [
+              DogsPerdidosWidget(AnimalModel(
+                id: "0",
+                nome: "Mel",
+              )),
+              DogsPerdidosWidget(AnimalModel(
+                id: "0",
+                nome: "Mel",
+              )),
+              DogsPerdidosWidget(AnimalModel(
+                id: "0",
+                nome: "Mel",
+              )),
+            ]),
+          ),
+        ],
+      ),
     );
   }
 

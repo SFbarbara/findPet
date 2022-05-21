@@ -25,6 +25,7 @@ class AnimalPage extends StatefulWidget {
 class _AnimalPageState extends State<AnimalPage> {
   final GlobalKey<FormState> _key = GlobalKey<FormState>();
   AnimalModel animal = AnimalModel();
+  var gravando = false;
 
   @override
   void initState() {
@@ -203,17 +204,44 @@ class _AnimalPageState extends State<AnimalPage> {
                   ),
                   Row(
                     children: [
-                      Expanded(
-                        child: ElevatedButton.icon(
-                            onPressed: () {
-                              if (_key.currentState!.validate()) {
-                                _key.currentState!.save();
-                                _salvarAnimal(animal);
-                              }
-                            },
-                            icon: const Icon(Icons.save),
-                            label: const Text("Salvar")),
-                      ),
+                      gravando
+                          ? const Expanded(
+                              child: Center(
+                                child: CircularProgressIndicator(
+                                    valueColor:
+                                        AlwaysStoppedAnimation(Colors.red)),
+                              ),
+                            )
+                          : Expanded(
+                              child: ElevatedButton.icon(
+                                  onPressed: () async {
+                                    if (_key.currentState!.validate()) {
+                                      _key.currentState!.save();
+
+                                      setState(() {
+                                        gravando = true;
+                                      });
+                                      try {
+                                        await _salvarAnimal(animal);
+                                        setState(() {
+                                          gravando = false;
+                                        });
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(const SnackBar(
+                                          content: Text(
+                                              "Cachorro cadastrado com sucesso!"),
+                                        ));
+                                      } catch (e) {
+                                        setState(() {
+                                          gravando = false;
+                                        });
+                                      }
+                                      Navigator.pop(context);
+                                    }
+                                  },
+                                  icon: const Icon(Icons.save),
+                                  label: const Text("Salvar")),
+                            ),
                     ],
                   ),
                   const SizedBox(
