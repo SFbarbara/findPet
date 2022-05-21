@@ -185,6 +185,22 @@ class _AnimalPageState extends State<AnimalPage> {
                       animal.descricao = value;
                     },
                   ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  const Text(
+                    "Inclua 10 fotos do seu cachorro", 
+                    style: TextStyle(
+                      fontSize: 16
+                    ),
+                  ),
+                  Wrap(
+                    children:
+                        animal.fotos.map((e) => FotoAnimalTile(e)).toList(),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
                   Row(
                     children: [
                       Expanded(
@@ -203,11 +219,7 @@ class _AnimalPageState extends State<AnimalPage> {
                   const SizedBox(
                     height: 10,
                   ),
-                  const Text("Inclua 10 fotos do seu cachorro"),
-                  Wrap(
-                    children:
-                        animal.fotos.map((e) => FotoAnimalTile(e)).toList(),
-                  ),
+                  
                 ],
               ),
             ),
