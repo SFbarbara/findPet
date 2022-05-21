@@ -1,6 +1,8 @@
+import 'package:findpet/foto_cachorro.dart';
 import 'package:flutter/material.dart';
 
 import '../models/animal_model.dart';
+import 'animal_page.dart';
 
 class MyDogWidget extends StatelessWidget {
   final AnimalModel mydog;
@@ -8,29 +10,33 @@ class MyDogWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text("${mydog.nome}"),
-        // ignore: avoid_unnecessary_containers
-        Container(
-          child: Column(
-            children: [
-              Container(
-                padding: const EdgeInsets.all(5),
-                child: Stack(
-                  children: const [
-                    CircleAvatar(
-                      radius: 40,
-                      backgroundImage: NetworkImage(
-                          "https://static1.patasdacasa.com.br/articles/8/10/38/@/4864-o-cachorro-inteligente-mostra-essa-carac-articles_media_mobile-1.jpg"),
-                    ),
-                  ],
+    return GestureDetector(
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => AnimalPage(animal: mydog),
+      )),
+      child: Column(
+        children: [
+          Text("${mydog.nome}"),
+          // ignore: avoid_unnecessary_containers
+          Container(
+            child: Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(5),
+                  child: Stack(
+                    children: [
+                      CircleAvatar(
+                        radius: 40,
+                        backgroundImage: FotoCachorro(mydog.foto).getImage(),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

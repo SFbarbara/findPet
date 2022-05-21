@@ -110,7 +110,7 @@ class MainPage extends StatelessWidget {
                         children: [
                           TextButton.icon(
                             icon: const Icon(Icons.add_to_photos_rounded,
-                                color: Colors.white),
+                                color: Color(0xFFFFFFFF)),
                             label: const Text(
                               "Cadastro do animal",
                               style: TextStyle(
