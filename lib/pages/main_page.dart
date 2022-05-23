@@ -1,6 +1,7 @@
 // ignore: unnecessary_import
 import 'dart:ui';
 
+// ignore: unused_import
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:findpet/animal_repository.dart';
 import 'package:findpet/foto_usuario.dart';
@@ -17,6 +18,7 @@ import 'package:findpet/usuario.repository.dart';
 import 'package:flutter/material.dart';
 
 import '../usuario_store.dart';
+// ignore: unused_import
 import 'dogs_perdidos_widget.dart';
 import 'my_dog_widget.dart';
 
