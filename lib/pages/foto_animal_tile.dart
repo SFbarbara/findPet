@@ -8,8 +8,8 @@ import '../foto_cachorro.dart';
 // ignore: must_be_immutable
 class FotoAnimalTile extends StatelessWidget {
   final String? foto;
-  FotoAnimalTile(this.foto, {Key? key}) : super(key: key);
-  AnimalModel animal = AnimalModel();
+  final Function(String? foto) onGetFoto;
+  FotoAnimalTile(this.foto, this.onGetFoto, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Column(
@@ -36,9 +36,9 @@ class FotoAnimalTile extends StatelessWidget {
       final XFile? photo = await _picker.pickImage(source: ImageSource.gallery);
 
       photo!.readAsBytes().then((imagem) {
-        setState(() {
-          animal.foto = base64Encode(imagem);
-        });
+        
+          onGetFoto(base64Encode(imagem));
+        
       });
     } catch (e) {
       // ignore: avoid_print
