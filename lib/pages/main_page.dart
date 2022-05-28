@@ -17,14 +17,21 @@ import 'package:findpet/pages/usuario_page.dart';
 import 'package:findpet/usuario.repository.dart';
 import 'package:flutter/material.dart';
 
+import '../animal_perdido_repository.dart';
+import '../models/animal_perdido_model.dart';
 import '../usuario_store.dart';
 // ignore: unused_import
 import 'dogs_perdidos_widget.dart';
 import 'my_dog_widget.dart';
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
 
+  @override
+  State<MainPage> createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -122,9 +129,12 @@ class MainPage extends StatelessWidget {
                                 fontSize: 18,
                               ),
                             ),
-                            onPressed: () {
-                              Navigator.of(context).push(MaterialPageRoute(
+                            onPressed: () async {
+                              await Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => const AnimalPage()));
+                                  setState(() {
+                                    
+                                  });
                             },
                           ),
                         ],
@@ -178,7 +188,7 @@ class MainPage extends StatelessWidget {
               future: AnimalRepository().listar(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
-                  return const Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.red)),);
+                  return const Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.black)),);
                 } else {
                   return ListView.builder(
                     itemCount: snapshot.data?.length ?? 0,
@@ -207,6 +217,26 @@ class MainPage extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          Expanded(
+            child: FutureBuilder<List<AnimalPerdidoModel>>(
+                future: AnimalPerdidoRepository().listar(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(Colors.black)),);
+                  } else {
+                    return ListView.builder(
+                      itemCount: snapshot.data?.length ?? 0,
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.all(8.0),
+                      itemBuilder: (context, index) {
+                        List<AnimalPerdidoModel> data = snapshot.data!;
+                        return DogsPerdidosWidget(data[index].animal,key: Key("${data[index].id}"),);
+                      },
+                    );
+                  }
+                },
+              ),
           ),
         ],
       ),

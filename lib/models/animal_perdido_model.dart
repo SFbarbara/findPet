@@ -5,8 +5,8 @@ class AnimalPerdidoModel {
   AnimalModel animal;
 
   AnimalPerdidoModel(
-    this.id,
     this.animal,
+    {this.id}
   );
 
   Map<String, dynamic> toJson() {
@@ -18,6 +18,8 @@ class AnimalPerdidoModel {
 
   factory AnimalPerdidoModel.fromMap(Map<String, dynamic> snapshot) {
     return AnimalPerdidoModel(
-        snapshot['id'], AnimalModel.fromMap(snapshot['animal']));
+      AnimalModel.fromMap(snapshot['animal']),
+      id: snapshot['id']
+    );
   }
 }
