@@ -11,14 +11,13 @@ class AnimalPerdidoModel {
 
   Map<String, dynamic> toJson() {
     return {
-      "id: ": id,
       "animal: ": animal.toJson(),
     };
   }
 
   factory AnimalPerdidoModel.fromMap(Map<String, dynamic> snapshot) {
     return AnimalPerdidoModel(
-      AnimalModel.fromMap(snapshot['animal']),
+      AnimalModel.fromMap(snapshot['animal: ']),
       id: snapshot['id']
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../foto_cachorro.dart';
 import '../models/animal_model.dart';
 import 'inferir/inferir_page.dart';
 
@@ -16,15 +17,15 @@ class DogsPerdidosWidget extends StatelessWidget {
                   Card(
                     child: SizedBox(
                       height: 300,
-                      width: MediaQuery.of(context).size.width-8,
+                      width: MediaQuery.of(context).size.width-20,
                       child: Column(
                         children: [
                           Text("${perdido.nome}"),
-                          const Expanded(
+                           Expanded(
                             child: Image(
                               fit: BoxFit.cover,
-                              image: NetworkImage("https://static1.patasdacasa.com.br/articles/8/10/38/@/4864-o-cachorro-inteligente-mostra-essa-carac-articles_media_mobile-1.jpg"),),
-                          ),
+                              image:  FotoCachorro(perdido.foto).getImage()
+                          ),)
                         ],
                       ),
                     ),
