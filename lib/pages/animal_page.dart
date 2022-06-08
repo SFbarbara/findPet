@@ -55,19 +55,19 @@ class _AnimalPageState extends State<AnimalPage> {
         title: const Text("Cadastre seu cachorro"),
         actions: [
           FloatingActionButton(
-              child: Icon(Icons.report_gmailerrorred),
+              child: const Icon(Icons.report_gmailerrorred),
               onPressed: () {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: Text("Animal perdido"),
-                    content: Text(
+                    title: const Text("Animal perdido"),
+                    content: const Text(
                         "Você está prestes a fazer uma notificação de perda de animal. Confirma a operação?"),
                     actions: <Widget>[
                       ElevatedButton(
                         onPressed: () =>
                             Navigator.pop(context), // Closes the dialog
-                        child: Text('Não'),
+                        child: const Text('Não'),
                       ),
                       ElevatedButton(
                         onPressed: () {
@@ -75,7 +75,7 @@ class _AnimalPageState extends State<AnimalPage> {
                               .salvar(AnimalPerdidoModel(animal));
                           Navigator.pop(context); // Closes the dialog
                         },
-                        child: Text('Sim'),
+                        child: const Text('Sim'),
                       ),
                     ],
                   ),
