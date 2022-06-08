@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:findpet/models/animal_model.dart';
+
 import 'package:image_picker/image_picker.dart';
 
 import '../foto_cachorro.dart';
@@ -9,7 +9,7 @@ import '../foto_cachorro.dart';
 class FotoAnimalTile extends StatelessWidget {
   final String? foto;
   final Function(String? foto) onGetFoto;
-  FotoAnimalTile(this.foto, this.onGetFoto, {Key? key}) : super(key: key);
+  const FotoAnimalTile(this.foto, this.onGetFoto, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Column(
@@ -36,9 +36,7 @@ class FotoAnimalTile extends StatelessWidget {
       final XFile? photo = await _picker.pickImage(source: ImageSource.gallery);
 
       photo!.readAsBytes().then((imagem) {
-        
-          onGetFoto(base64Encode(imagem));
-        
+        onGetFoto(base64Encode(imagem));
       });
     } catch (e) {
       // ignore: avoid_print
