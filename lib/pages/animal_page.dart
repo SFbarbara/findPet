@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:findpet/animal_perdido_repository.dart';
 import 'package:findpet/animal_repository.dart';
 import 'package:findpet/foto_cachorro.dart';
 import 'package:findpet/input_field.dart';
 import 'package:findpet/models/animal_model.dart';
+import 'package:findpet/models/animal_perdido_model.dart';
 import 'package:findpet/text_input_formater.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -38,9 +40,48 @@ class _AnimalPageState extends State<AnimalPage> {
 
   @override
   Widget build(BuildContext context) {
+    var _fotos = <FotoAnimalTile>[];
+
+    for (var i = 0; i < animal.fotos.length; i++) {
+      _fotos.add(FotoAnimalTile(animal.fotos[i], ((foto) {
+        setState(() {
+          animal.fotos[i] = foto;
+        });
+      })));
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: const Text("Cadastre seu cachorro"),
+        actions: [
+          FloatingActionButton(
+              child: Icon(Icons.report_gmailerrorred),
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text("Animal perdido"),
+                    content: Text(
+                        "Você está prestes a fazer uma notificação de perda de animal. Confirma a operação?"),
+                    actions: <Widget>[
+                      ElevatedButton(
+                        onPressed: () =>
+                            Navigator.pop(context), // Closes the dialog
+                        child: Text('Não'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () {
+                          AnimalPerdidoRepository()
+                              .salvar(AnimalPerdidoModel(animal));
+                          Navigator.pop(context); // Closes the dialog
+                        },
+                        child: Text('Sim'),
+                      ),
+                    ],
+                  ),
+                );
+              })
+        ],
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -135,7 +176,10 @@ class _AnimalPageState extends State<AnimalPage> {
                     initialValue: animal.nasc,
                     validator: (value) {
                       try {
-                        DateTime.parse(formatarDataUS(value!));
+                        var data = DateTime.parse(formatarDataUS(value!));
+                        if (data.isAfter(DateTime.now())) {
+                          return "Data de nascimento não pode ser no futuro";
+                        }
                         return null;
                       } catch (e) {
                         // ignore: avoid_print
@@ -190,14 +234,11 @@ class _AnimalPageState extends State<AnimalPage> {
                     height: 15,
                   ),
                   const Text(
-                    "Inclua 10 fotos do seu cachorro", 
-                    style: TextStyle(
-                      fontSize: 16
-                    ),
+                    "Inclua 10 fotos do seu cachorro",
+                    style: TextStyle(fontSize: 16),
                   ),
                   Wrap(
-                    children:
-                        animal.fotos.map((e) => FotoAnimalTile(e)).toList(),
+                    children: _fotos,
                   ),
                   const SizedBox(
                     height: 15,
@@ -247,7 +288,6 @@ class _AnimalPageState extends State<AnimalPage> {
                   const SizedBox(
                     height: 10,
                   ),
-                  
                 ],
               ),
             ),
@@ -264,7 +304,8 @@ class _AnimalPageState extends State<AnimalPage> {
   Future<void> _fotoAnimal(ImageSource source) async {
     final ImagePicker _picker = ImagePicker();
     try {
-      final XFile? photo = await _picker.pickImage(source: source);
+      final XFile? photo = await _picker.pickImage(
+          maxHeight: 480, maxWidth: 640, imageQuality: 50, source: source);
 
       photo!.readAsBytes().then((imagem) {
         setState(() {

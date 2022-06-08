@@ -32,11 +32,11 @@ class AnimalModel {
   factory AnimalModel.fromMap(Map<String, dynamic> snapshot) {
     return AnimalModel(
         id: snapshot['id'],
-        descricao: snapshot['descricao'],
-        nome: snapshot['nome'],
-        raca: snapshot['raca'],
-        nasc: snapshot['nasc'],
-        foto: snapshot['foto'],
-        genero: snapshot['genero']);
+        descricao: snapshot['descrição: '],
+        nome: snapshot['nome: '],
+        raca: snapshot['raça: '],
+        nasc: snapshot['nascimento: '],
+        foto: snapshot['foto: '],
+        genero: snapshot['genêro: ']);
   }
 }

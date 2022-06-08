@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:findpet/models/animal_model.dart';
 
 import 'models/animal_perdido_model.dart';
 
@@ -27,4 +28,6 @@ class AnimalPerdidoRepository {
         .map((e) => AnimalPerdidoModel.fromMap(e.data()))
         .toList();
   }
+
+
 }
