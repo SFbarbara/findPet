@@ -25,7 +25,7 @@ class AnimalModel {
       "nascimento: ": nasc,
       "foto: ": foto,
       "genêro: ": genero,
-      "descrição: ": descricao
+      "descrição: ": descricao,
     };
   }
 
