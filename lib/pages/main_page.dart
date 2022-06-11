@@ -196,7 +196,11 @@ class _MainPageState extends State<MainPage> {
                     padding: const EdgeInsets.all(8.0),
                     itemBuilder: (context, index) {
                       List<AnimalModel> data = snapshot.data!;
-                      return MyDogWidget(data[index],key: Key("${data[index].id}"),);
+                      return MyDogWidget(data[index],(){
+                        setState(() {
+                          
+                        });
+                      },key: Key("${data[index].id}"),);
                     },
                   );
                 }
@@ -227,7 +231,7 @@ class _MainPageState extends State<MainPage> {
                   } else {
                     return ListView.builder(
                       itemCount: snapshot.data?.length ?? 0,
-                      scrollDirection: Axis.horizontal,
+                      scrollDirection: Axis.vertical,
                       padding: const EdgeInsets.all(8.0),
                       itemBuilder: (context, index) {
                         List<AnimalPerdidoModel> data = snapshot.data!;

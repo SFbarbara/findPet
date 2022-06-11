@@ -70,10 +70,16 @@ class _AnimalPageState extends State<AnimalPage> {
                         child: const Text('Não'),
                       ),
                       ElevatedButton(
-                        onPressed: () {
-                          AnimalPerdidoRepository()
-                              .salvar(AnimalPerdidoModel(animal));
-                          Navigator.pop(context); // Closes the dialog
+                        onPressed: () async {
+                          try {
+                            await AnimalPerdidoRepository()
+                              .salvar(AnimalPerdidoModel(animal)); 
+                              Navigator.pop(context);
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Cachorro adicionado na lista de perdidos.")));
+                              
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Erro adicionando cachorro. Tente mais tarde.")));
+                          }
                         },
                         child: const Text('Sim'),
                       ),

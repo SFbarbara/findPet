@@ -17,7 +17,7 @@ class DogsPerdidosWidget extends StatelessWidget {
                   Card(
                     child: SizedBox(
                       height: 300,
-                      width: MediaQuery.of(context).size.width-20,
+                      width: MediaQuery.of(context).size.width-24,
                       child: Column(
                         children: [
                           Text("${perdido.nome}"),

@@ -6,14 +6,18 @@ import 'animal_page.dart';
 
 class MyDogWidget extends StatelessWidget {
   final AnimalModel mydog;
-  const MyDogWidget(this.mydog, {Key? key}) : super(key: key);
+  final Function alterado;
+  const MyDogWidget(this.mydog, this.alterado, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+      onTap: () async {
+        await Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => AnimalPage(animal: mydog),
-      )),
+      ));
+      alterado();
+      },
       child: Column(
         children: [
           // ignore: unnecessary_string_interpolations
