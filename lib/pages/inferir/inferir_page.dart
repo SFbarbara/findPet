@@ -113,7 +113,6 @@ class _InferirPageState extends State<InferirPage> {
                           : Container(
                               child: Column(
                                 children: [
-                                  
                                   SizedBox(
                                     height: 230,
                                     width: 230,
@@ -131,10 +130,10 @@ class _InferirPageState extends State<InferirPage> {
                                   ),
                                   _output != null
                                       ? Text(
-                                          'Essa foto: ${_output[0]['label']}!',
+                                          'Essa foto ${_output[0]['label']}!',
                                           style: const TextStyle(
                                               color: Colors.white,
-                                              fontSize: 18,
+                                              fontSize: 15,
                                               fontWeight: FontWeight.w400),
                                         )
                                       : Container(),
@@ -168,7 +167,7 @@ class _InferirPageState extends State<InferirPage> {
                           ),
                         ),
                         const SizedBox(
-                          height: 25,
+                          height: 15,
                         ),
                         GestureDetector(
                           onTap: pickGalleryImage,

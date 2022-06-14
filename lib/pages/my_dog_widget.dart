@@ -21,7 +21,7 @@ class MyDogWidget extends StatelessWidget {
       child: Column(
         children: [
           // ignore: unnecessary_string_interpolations
-          Text("${mydog.nome ?? ''}"),
+          Text("${mydog.nome ?? ''}",),
           // ignore: avoid_unnecessary_containers
           Container(
             child: Column(

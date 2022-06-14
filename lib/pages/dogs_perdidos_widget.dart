@@ -15,6 +15,7 @@ class DogsPerdidosWidget extends StatelessWidget {
               Stack(
                 children: [
                   Card(
+                    color: Colors.black12,
                     child: SizedBox(
                       height: 300,
                       width: MediaQuery.of(context).size.width-24,
